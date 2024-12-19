@@ -1,0 +1,305 @@
+(1)NESTED STRUCTURES:
+
+C language allows us to insert one structure into another as a member. 
+This process is called nesting and such structures are called nested structures. 
+There are two ways in which we can nest one structure into another:
+
+1.Embeded structures:
+
+2.Seperate structures:
+
+
+
+
+(2)Self-Referential Structures:
+
+The self-referential structures in C are those structures that contain references to the same type as themselves 
+i.e. they contain a member of the type pointer pointing to the same structure type.
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+
+1.Embeded structures:
+
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+struct Address{
+    char city[50];
+    char state[50];
+    int pincode;
+     struct Employee{
+         int id;
+         char name[30];
+         char dept[30];
+         float salary;
+    }emp;
+}addr;
+
+int main() {
+     printf("Enter Employee ID: ");
+    scanf("%d", &addr.emp.id);
+
+    printf("Enter Employee Name: ");
+    scanf(" %[^\n]s", addr.emp.name);
+
+    printf("Enter Department: ");
+    scanf(" %[^\n]s", addr.emp.dept);
+
+    printf("Enter Salary: ");
+    scanf("%f", &addr.emp.salary);
+
+    // Input details for the address
+    printf("Enter City: ");
+    scanf(" %[^\n]s", addr.city);
+
+    printf("Enter State: ");
+    scanf(" %[^\n]s", addr.state);
+
+    printf("Enter Pincode: ");
+    scanf("%d", &addr.pincode);
+
+    // Displaying details
+    printf("\nEmployee Details:\n");
+    printf("ID: %d\n", addr.emp.id);
+    printf("Name: %s\n", addr.emp.name);
+    printf("Department: %s\n", addr.emp.dept);
+    printf("Salary: %.2f\n", addr.emp.salary);
+
+    printf("\nAddress Details:\n");
+    printf("City: %s\n", addr.city);
+    printf("State: %s\n", addr.state);
+    printf("Pincode: %d\n", addr.pincode);
+
+    return 0;
+}
+
+
+
+
+1.1[You can relate this code with real world applications]
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <string.h>
+struct employee{
+    int id;
+    char name[30];
+    struct details{
+        int pincode;
+        char city[30];
+        float sal;
+    }add;
+}emp;
+
+int main() {
+    emp.id=101;
+    strcpy(emp.name,"Aakhib");
+    emp.add.sal=10000000;
+    emp.add.pincode=523001;
+    strcpy(emp.add.city,"ongole");
+    
+    printf("%d %s %f",emp.id,emp.name,emp.add.sal);
+    printf("\n %d %s",emp.add.pincode,emp.add.city);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+2.Seperate structures:
+#include <stdio.h>
+
+// Define the Address structure
+struct Address {
+    char city[50];
+    char state[50];
+    int pincode;
+};
+
+// Define the Employee structure
+struct Employee {
+    int id;
+    char name[30];
+    char dept[30];
+    float salary;
+    struct Address empAddress; // Reference to Address structure
+};
+
+int main() {
+    struct Employee emp;
+
+    // Input employee details
+    printf("Enter Employee ID: ");
+    scanf("%d", &emp.id);
+
+    printf("Enter Employee Name: ");
+    scanf(" %[^\n]s", emp.name);
+
+    printf("Enter Department: ");
+    scanf(" %[^\n]s", emp.dept);
+
+    printf("Enter Salary: ");
+    scanf("%f", &emp.salary);
+
+    printf("Enter City: ");
+    scanf(" %[^\n]s", emp.empAddress.city);
+
+    printf("Enter State: ");
+    scanf(" %[^\n]s", emp.empAddress.state);
+
+    printf("Enter Pincode: ");
+    scanf("%d", &emp.empAddress.pincode);
+
+    // Display employee details
+    printf("\nEmployee Details:\n");
+    printf("ID: %d\n", emp.id);
+    printf("Name: %s\n", emp.name);
+    printf("Department: %s\n", emp.dept);
+    printf("Salary: %.2f\n", emp.salary);
+    printf("City: %s\n", emp.empAddress.city);
+    printf("State: %s\n", emp.empAddress.state);
+    printf("Pincode: %d\n", emp.empAddress.pincode);
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SELF REFERENTIAL STRUCTURES:
+
+
+
+
+
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+struct Employee{
+    int id;
+    char name[30];
+    float salary;
+    struct Employee *next;
+};
+
+int main() {
+    struct Employee emp1={101,"Aakhib",100000};
+    struct Employee emp2={102,"Afzal",100000};
+     
+    emp1.next=&emp2;
+    struct Employee *p=&emp1;
+    
+    printf("%d %s %f\n",p->id,p->name,p->salary);
+    printf("%d %s %f",p->next->id,p->next->name,p->next->salary);
+    
+    return 0;
+}
+
+output:
+101 Aakhib 100000.000000
+102 Afzal 100000.000000
+
+
+
+
+
+1.1
+using typedef:
+// Online C compiler to run C program online
+#include <stdio.h>
+typedef struct Employee{
+    int id;
+    char name[30];
+    float salary;
+    struct Employee *next;
+}emptype;
+
+int main() {
+    emptype emp1={101,"Aakhib",100000};
+    emptype emp2={102,"Afzal",100000};
+     
+    emp1.next=&emp2;
+    struct Employee *p=&emp1;
+    
+    printf("%d %s %f\n",p->id,p->name,p->salary);
+    printf("%d %s %f",p->next->id,p->next->name,p->next->salary);
+    
+    return 0;
+}
+
+
+output:
+101 Aakhib 100000.000000
+102 Afzal 100000.000000
+
+
+
+
+
+
+
+
+2.
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+struct Node{
+    int data;
+    struct Node *next;
+};
+int main()
+{
+    struct Node *head,*second,*third,*temp;
+    head=(struct Node*)malloc(sizeof(struct Node));
+    second=(struct Node*)malloc(sizeof(struct Node));
+    third=(struct Node*)malloc(sizeof(struct Node));
+    
+    head->data=1;
+    head->next=second;
+    
+    second->data=2;
+    second->next=third;
+    
+    third->data=3;
+    third->next=NULL;
+
+    temp=head;    
+    
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+    free(head);
+    free(second);
+    free(third);
+}

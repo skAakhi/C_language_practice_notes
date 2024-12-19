@@ -1,0 +1,633 @@
+1.Function declaration,defination,calling
+// Online C compiler to run C program online
+#include <stdio.h>
+void sum();//Finction declaration
+void main() {
+sum();//Function calling
+}
+void sum()//Function defination
+{
+    int a,b;
+    printf("Enter a b values: ");
+    scanf("%d%d",&a,&b);
+    printf("sum=%d",a+b);
+}
+
+
+
+
+1.1[Sucessfully executing with no errors due to it is interpreting as no arguments,parameters are accepting]
+// Online C compiler to run C program online
+#include <stdio.h>
+void sum(void);//Finction declaration
+void main(void) {
+sum();//Function calling
+}
+void sum(void)//Function defination
+{
+    int a,b;
+    printf("Enter a b values: ");
+    scanf("%d%d",&a,&b);
+    printf("sum=%d",a+b);
+}
+
+
+
+
+
+
+classifications of functions:
+
+1.No arguments and no return_type
+#include <stdio.h>
+void sum();//Finction declaration
+void main() {
+sum();//Function calling
+}
+void sum()//Function defination
+{
+    int a,b;
+    printf("Enter a b values: ");
+    scanf("%d%d",&a,&b);
+    printf("sum=%d",a+b);
+}
+
+
+2.No arguments and with return_type
+// Online C compiler to run C program online
+#include <stdio.h>
+int sum();//Finction declaration
+void main() {
+    printf("%d",sum());
+}
+int sum()
+{
+    int a,b;
+    printf("Enter a b values: ");
+    scanf("%d%d",&a,&b);
+     return a+b;
+}
+
+
+3.with arguments and no return_type
+// Online C compiler to run C program online
+#include <stdio.h>
+void sum(int,int);//Finction declaration
+void main() {
+    int a,b;
+    printf("Enter a b values: ");
+    scanf("%d%d",&a,&b);
+    sum(a,b);
+}
+void sum(int a,int b)
+{
+    printf("%d",a+b);
+}
+
+
+4.with arguments and with return_type
+// Online C compiler to run C program online
+#include <stdio.h>
+int sum(int,int);//Finction declaration
+void main() {
+    int a,b;
+    printf("Enter a b values: ");
+    scanf("%d%d",&a,&b);
+    printf("%d",sum(a,b));
+}
+int sum(int a,int b)
+{
+    return a+b;
+}
+
+
+
+
+
+
+
+
+
+Call by value and call by reference:
+
+1.call by value:
+// Online C compiler to run C program online
+#include <stdio.h>
+int sum(int,int);//Finction declaration
+void main() {
+    int a,b;
+    printf("Enter a b values: ");
+    scanf("%d%d",&a,&b);
+     sum(a,b);
+}
+int sum(int a,int b)
+{
+    printf("%d",a+b);
+}
+
+
+2.Call by reference:[swapping of two numbers]
+// Online C compiler to run C program online
+#include <stdio.h>
+int swap(int*,int*);//Finction declaration
+void main() {
+    int a,b;
+    printf("Enter a b values: ");
+    scanf("%d%d",&a,&b);
+    printf("Before swapping a=%d b=%d\n",a,b);
+      swap(&a,&b);
+     printf("After swapping a=%d b=%d",a,b);
+}
+int swap(int *p,int *q)
+{
+  int temp=*p;
+  *p=*q;
+  *q=temp;
+}
+
+
+
+
+
+
+
+
+
+Passing array as argument:
+
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+int avg(int[],int);//Finction declaration
+void main() {
+    int arr[]={10,20,30,40,50};
+    int size=sizeof(arr)/sizeof(arr[0]);
+    printf("Average=%d",avg(arr,size));
+}
+int avg(int a[],int s)
+{
+    int sum=0;
+   for(int i=0;i<s;i++)
+      sum+=a[i];
+      
+  return sum/s;
+}
+
+
+1.1[Even it is return_type no return keyword is return in bottom of avg() function but still runnig without warnings]
+// Online C compiler to run C program online
+#include <stdio.h>
+int avg(int[],int);//Finction declaration
+void main() {
+    int arr[]={10,20,30,40,50};
+    int size=sizeof(arr)/sizeof(arr[0]);
+    avg(arr,size);
+}
+int avg(int a[],int s)
+{
+    int sum=0;
+   for(int i=0;i<s;i++)
+      sum+=a[i];
+      
+   printf("Average=%d",sum/s);
+}
+
+1.2[Creating function argument as a pointer variable , which hold base address of same memory block][a[i] working in fun()]
+// Online C compiler to run C program online
+#include <stdio.h>
+int avg(int*,int);//Finction declaration
+void main() {
+    int arr[]={10,20,30,40,50};
+    int size=sizeof(arr)/sizeof(arr[0]);
+    printf("Average=%d",avg(arr,size));
+}
+int avg(int *a,int s)
+{
+    int sum=0;
+   for(int i=0;i<s;i++)
+      sum+=a[i];// sum+=*(a+i); both are working
+     
+    return sum/s;
+}
+
+
+
+
+
+
+
+
+Passing string as argument:
+
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+int print(char[]);//Finction declaration
+void main() {
+     char str[]="Haihello";
+     int size=sizeof(str)/sizeof(str[0]);
+     print(str);
+}
+int print(char str[])
+{
+      printf("%s",str);
+}
+
+
+
+2.[Finding length of the string]
+// Online C compiler to run C program online
+#include <stdio.h>
+int len(char[]);//Finction declaration
+void main() {
+     char str[]="Aakhib";
+     int size=sizeof(str)/sizeof(str[0]);
+     printf("Length=%d",len(str));
+}
+int len(char str[])
+{
+    int i=0;
+      while(str[i]!='\0')
+      {
+          i++;
+      }
+      return i;
+}
+
+
+
+2.1
+// Online C compiler to run C program online
+#include <stdio.h>
+int len(char*);//Finction declaration
+void main() {
+     char str[]="Aakhib";
+     int size=sizeof(str)/sizeof(str[0]);
+     printf("Length=%d",len(str));
+}
+int len(char *str)
+{
+    int i=0;
+      while(str[i]!='\0')
+      {
+          i++;
+      }
+      return i;
+}
+
+
+
+
+
+
+
+
+
+
+
+Returning string to main():
+
+1.[String="Aakhib" allocating in heap memory which cant be modify in main() using any pointer]
+// Online C compiler to run C program online
+#include <stdio.h>
+char* display();
+int main() {
+    char *str;
+    str=display();
+    printf("%s",str);
+    return 0;
+}
+char* display()
+{
+    return "Aakhib";
+}
+
+
+Note:
+What Happens When You return "Aakhib";
+"Aakhib" is a string literal in C.
+
+String literals are stored in the read-only section of the program's data segment.
+This memory is allocated for the lifetime of the program and cannot be modified (attempting to modify it results in undefined behavior).
+The function returns a pointer to the location of the string literal in memory.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1.1[display() function is poping out from the stack so string="Aakhib" is also deleting from the stack]
+// Online C compiler to run C program online
+#include <stdio.h>
+char* display();
+int main() {
+    char *str;
+    str=display();
+    printf("%s",str);
+    return 0;
+}
+char* display()
+{
+    char str[]="Aakhib";
+    return str;
+}
+
+output:
+/tmp/82G5dFReA5/main.c: In function 'display':
+/tmp/82G5dFReA5/main.c:13:12: warning: function returns address of local variable [-Wreturn-local-addr]
+   13 |     return str;
+      |            ^~~
+(null)
+
+
+
+
+1.2[To prevent it making use of static keyword throughout the program]
+// Online C compiler to run C program online
+#include <stdio.h>
+char* display();
+int main() {
+    char *str;
+    str=display();
+    printf("%s",str);
+    return 0;
+}
+char* display()
+{
+   static char str[]="Aakhib";
+    return str;
+}
+
+output:
+Aakhib
+
+
+
+1.3[we can also modify it when it is stack memory, but cant in heap memory]
+// Online C compiler to run C program online
+#include <stdio.h>
+char* display();
+int main() {
+    char *str;
+    str=display();
+    str[0]='a';
+    printf("%s",str);
+    return 0;
+}
+char* display()
+{
+   static char str[]="Aakhib";
+    return str;
+}
+
+
+
+
+
+
+
+
+
+
+The memory where the array elements {1, 2, 3, 4, 5} are stored depends on where and how the array is declared. Here’s the breakdown:
+
+Case 1: Declared Inside a Function (e.g., main)
+If int a[] = {1, 2, 3, 4, 5}; is declared inside a function like main, the entire array (including its elements) is stored in stack memory.
+Each element {1, 2, 3, 4, 5} will occupy contiguous memory locations in the stack.
+Once the function scope ends, the stack memory used by the array is released.
+
+Case 2: Declared as a Global or Static Variable
+If int a[] = {1, 2, 3, 4, 5}; is declared outside all functions (global scope) or declared as a static variable, the array and its elements are stored in the data segment.
+The data segment is part of the program’s memory and persists for the program's lifetime.
+
+Case 3: Dynamically Allocated
+If the array is dynamically allocated (e.g., with malloc or calloc), the elements are stored in heap memory.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Returning a pointer:
+
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+int* display(int *a)
+{
+    a=a+2;
+    return a;
+}
+int main()
+{
+    int a[]={1,2,3,6,4,5,8};
+    int *p=display(a);
+    printf("%d",*p);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Function pointer:
+
+
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+int sum(int a, int b)
+{
+    return a+b;
+}
+int main()
+{
+   int s=0;
+   int (*p)(int,int)=sum;// &sum [same]
+   s=(*p)(1,7);  //  s=p(1,7); both meaning same
+   printf("%d",s);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Callback Function:
+
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+void sum(int a, int b)
+{
+    printf("sum=%d\n",a+b);
+}
+void sub(int a, int b)
+{
+    printf("sub=%d\n",a-b);
+}
+void display(void (*p)(int,int))
+{
+    p(5,10);
+}
+int main()
+{
+   display(sum);
+   display(sub);
+}
+
+
+
+
+
+
+
+
+
+
+Application of function or array of function pointer:
+
+1.[my implemented code]
+// Online C compiler to run C program online
+#include <stdio.h>
+void sum(int a, int b)
+{
+    printf("sum=%d\n",a+b);
+}
+void sub(int a, int b)
+{
+    printf("sub=%d\n",a-b);
+}
+void mul(int a, int b)
+{
+    printf("mul=%d\n",a*b);
+}
+void divi(int a, int b)
+{
+    printf("div=%d\n",a/b);
+}
+
+
+int main()
+{
+   int a,b,c;
+   void (*p[10])(int,int)={sum,sub,mul,divi};
+   printf("Enter a b values: ");
+   scanf("%d%d",&a,&b);
+   printf("Enter for sum-0,sub-1,mul-2,div-3: ");
+   scanf("%d",&c);
+   (p[c])(a,b);
+}
+
+
+
+
+
+
+
+
+
+
+
+1.1[chatgpt implemented code]
+// Online C compiler to run C program online
+#include <stdio.h>
+
+void sum(int a, int b) {
+    printf("Sum = %d\n", a + b);
+}
+
+void sub(int a, int b) {
+    printf("Sub = %d\n", a - b);
+}
+
+void mul(int a, int b) {
+    printf("Mul = %d\n", a * b);
+}
+
+void divi(int a, int b) {
+    if (b != 0) {
+        printf("Div = %d\n", a / b); // Corrected to perform division, not modulo
+    } else {
+        printf("Division by zero is not allowed.\n");
+    }
+}
+
+int main() {
+    int a, b, c;
+    void (*p[10])(int, int) = {sum, sub, mul, divi};
+
+    // Get input for the two numbers
+    printf("Enter values for a and b: ");
+    scanf("%d %d", &a, &b);
+
+    // Get input for the operation
+    printf("Enter for sum-0, sub-1, mul-2, div-3: ");
+    scanf("%d", &c);
+
+    // Check if the input index is valid
+    if (c >= 0 && c <= 3) {
+        // Call the corresponding function
+        (*p[c])(a, b);
+    } else {
+        printf("Invalid choice! Please enter 0, 1, 2, or 3.\n");
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,403 @@
+
+
+Questions:
+1.Write a c program to find the sum of a 1D array using malloc() function
+
+
+2.Write a c program to find the total,average of n students using structures
+[displaying total and average for every individual student]  
+
+
+3.Enter n students data using calloc() and display failed students list
+
+
+
+4.Read the students name and marks from command line and display the student details along with the total of each individual student
+
+
+
+5.Write a c program to implement realloc()------->[Refer from DMA file of 1st year rise_clg_project folder]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Answers:
+
+1.
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n, i;
+    int *arr;
+    int sum = 0;
+
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+    
+    arr = (int *)malloc(n * sizeof(int));
+
+    if (arr == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1; 
+    }
+
+    printf("Enter the elements of the array:\n");
+    for (i = 0; i < n; i++) {
+        scanf("%d", arr+i);//or scanf("%d",&arr[i]);
+    }
+
+    for (i = 0; i < n; i++) {
+        sum += *(arr+i);//or arr[i];
+    }
+   printf("The sum of the array elements is: %d\n", sum);
+    
+    free(arr);
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2.[chat gpt]
+#include <stdio.h>
+
+// Define a structure for student
+struct Student {
+    char name[50];
+    int marks[10]; // Array to store marks for multiple subjects
+    int total;
+    float average;
+};
+
+int main() {
+    int n, subjects, i, j;
+
+    printf("Enter the number of students: ");
+    scanf("%d", &n);
+
+    printf("Enter the number of subjects: ");
+    scanf("%d", &subjects);
+
+    // Create an array of students
+    struct Student students[n];
+
+    // Input student details
+    for (i = 0; i < n; i++) {
+        printf("\nEnter details for student %d:\n", i + 1);
+        printf("Name: ");
+        scanf("%s", students[i].name);
+
+        students[i].total = 0; // Initialize total for each student
+
+        // Input marks for each subject
+        for (j = 0; j < subjects; j++) {
+            printf("Marks for subject %d: ", j + 1);
+            scanf("%d", &students[i].marks[j]);
+            students[i].total += students[i].marks[j]; // Accumulate total
+        }
+
+        // Calculate average
+        students[i].average = (float)students[i].total / subjects;
+    }
+
+    // Display results
+    printf("\nDetails of Students:\n");
+    for (i = 0; i < n; i++) {
+        printf("\nName: %s\n", students[i].name);
+        printf("Marks: ");
+        for (j = 0; j < subjects; j++) {
+            printf("%d ", students[i].marks[j]);
+        }
+        printf("\nTotal Marks: %d\n", students[i].total);
+        printf("Average Marks: %.2f\n", students[i].average);
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+2.1[My implemented code]
+#include<stdio.h>
+struct student{
+    char name[30];
+    int marks[30];
+    int total;
+    float avg;
+};
+int main()
+{
+    int n,sub;
+    printf("Enter n number of students: ");
+    scanf("%d",&n);
+    printf("Enter n number of subjects: ");
+    scanf("%d",&sub);
+    
+    struct student s[n];
+    
+    for(int i=0;i<n;i++)
+    {
+        printf("\nEnter student %d details:\n",i+1);
+        printf("Enter name: ");
+        scanf("\n%[^\n]s",s[i].name);
+        
+        s[i].total=0;
+        for(int j=0;j<sub;j++)
+        {
+            printf("Enter subject %d marks:",j+1);
+            scanf("%d",&s[i].marks[j]);
+            s[i].total+=s[i].marks[j];
+        }
+        s[i].avg=(float)s[i].total/sub;
+    }
+    
+    
+    for(int i=0;i<n;i++)
+    {
+        printf("\nName:%s\n",s[i].name);
+        for(int j=0;j<sub;j++)
+        {
+            printf("%d ",s[i].marks[j]);
+        }
+        printf("\n");
+        printf("Total:%d\n",s[i].total);
+        printf("Average:%.2f\n",s[i].avg);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define PASS_MARKS 40
+
+// Define a structure to store student details
+typedef struct {
+    char name[50];
+    int roll_no;
+    float marks;
+} Student;
+
+int main() {
+    int n, i;
+    Student* students;
+
+    // Input the number of students
+    printf("Enter the number of students: ");
+    scanf("%d", &n);
+
+    // Allocate memory dynamically using calloc
+    students = (Student*)calloc(n, sizeof(Student));
+    if (students == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+
+    // Input student details
+    printf("\nEnter details of %d students:\n", n);
+    for (i = 0; i < n; i++) {
+        printf("\nStudent %d:\n", i + 1);
+        printf("Name: ");
+        scanf(" %[^\n]", students[i].name);  // Read string with spaces
+        printf("Roll Number: ");
+        scanf("%d", &students[i].roll_no);
+        printf("Marks: ");
+        scanf("%f", &students[i].marks);
+    }
+
+    // Display the list of failed students
+    printf("\nList of failed students (marks less than %d):\n", PASS_MARKS);
+    int failed_count = 0;
+    for (i = 0; i < n; i++) {
+        if (students[i].marks < PASS_MARKS) {
+            printf("Name: %s, Roll Number: %d, Marks: %.2f\n",
+                   students[i].name, students[i].roll_no, students[i].marks);
+            failed_count++;
+        }
+    }
+
+    if (failed_count == 0) {
+        printf("No student has failed.\n");
+    }
+
+    // Free allocated memory
+    free(students);
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+3.1[My implemented code]
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+#define PASS_MARKS 35
+struct student{
+    int id;
+    char name[30];
+    float marks;
+    float avg;
+};
+int main() {
+    struct student *p;
+    int n;
+    printf("Enter n number of student: ");
+    scanf("%d",&n);
+    
+    
+    p=(struct student*)calloc(n,sizeof(struct student));
+    if(p==NULL)
+    {
+        printf("Memory allocation failed\n");
+    }
+    else{
+        printf("Sucessfully allocated\n");
+        for(int i=0;i<n;i++)
+        {
+            printf("Enter id: ");
+            scanf("%d",&p[i].id);
+            printf("Enter name: ");
+            scanf(" %[^\n]s",p[i].name);//--->(space) ensures any leftover newline characters from the previous input are ignored.
+            printf("Enter marks :");
+            scanf("%f",&p[i].marks);
+        }
+        int failed=0;
+        printf("Failed list\n");
+        for(int i=0;i<n;i++)
+        {
+            if(p[i].marks<PASS_MARKS)
+            {
+                printf("Id: %d\nName: %s\nMarks: %f\n",p[i].id,p[i].name,p[i].marks);
+                failed++;
+            }
+        }
+        if(failed==0)
+        {
+            printf("No one failed");
+        }
+        
+    }
+    
+    free(p);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4.
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+struct student{
+    char name[30];
+    float marks[10];
+    float total;
+};
+
+int main() {
+    //struct student s;
+    int n,m;
+    printf("Enter n number of students:");
+    scanf("%d",&n);
+    struct student s[n];
+    printf("Enter n number of subjects:");
+    scanf("%d",&m);
+    for(int i=0;i<n;i++)
+    {
+        s[i].total=0;
+        printf("Enter name of student:%d: ",i+1);
+        scanf("%s",s[i].name);
+        for(int j=0;j<m;j++){
+        printf("Enter marks of:%d subject: ",j+1);
+        scanf("%f",&s[i].marks[j]);
+        s[i].total+=s[i].marks[j];
+        }
+    }
+    printf("\n");
+    for(int i=0;i<n;i++)
+    {
+        printf("\nName:%s\n",s[i].name);
+        printf("Marks:");
+        for(int j=0;j<m;j++){
+            printf("%.2f ",s[i].marks[j]);
+        }
+            
+        printf("\n");    
+        printf("Total:%f\n",s[i].total);
+    }
+
+
+    return 0;
+}
+

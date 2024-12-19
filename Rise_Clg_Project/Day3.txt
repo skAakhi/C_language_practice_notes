@@ -1,0 +1,653 @@
+1.Given height and weight of a person in float, calculate Body Mass index of the person and print respective output based on calculation. 
+Formulae for calculation: [weight (kg) / height (cm) / height (cm)] x 10,000 .
+
+For Example: weight =76.7 , height=162.2 
+
+BMI=((76.7/162.2)/162.2)X 10,000
+
+BMI=(0.4728/162.2)X 10,000 
+
+BMI=0.000291X 10,000 
+
+BMI=29.1 So, it is Overweight.
+
+Print "Underweight" or "Healthy weight" or "Overweight" or "Obesity". 
+
+Below 18.5        Underweight 
+
+18.5 – 24.9        Healthy weight 
+
+25.0 – 29.9       Overweight 
+
+30.0 and Above      Obesity
+
+
+Input Format:
+Accept two inputs, weight(float) and height(float)
+
+
+Output Format:
+Print "Underweight" or "Healthyweight" or "Overweight" or "Obesity"
+
+
+Constraints:
+1<=N<=10^15
+
+
+Sample Input 1:
+46.5 165.3
+
+
+Sample Output 1:
+Underweight
+
+
+Sample Input 2:
+76.7 162.2
+
+
+Sample Output 2:
+Overweight
+
+
+
+
+
+
+
+
+
+2.The body adiposity index is used to check your body fat level based on the size of your hips and your height. Unlike BMI, it doesn't use your body weight for estimations. Several studies show that this method is equal to the body fat percentage of adult men and women.
+
+BAI formula:
+
+BAI = (hip circumference/(height)^1.5) - 18 
+
+hip circumference is in centimeters and height is in meters. 
+
+For example: 
+
+If your height is 180 cm hip circumference is 102 cm: 
+
+BAI = [102/(1.8)^1.5]-18 = 24.2% 
+
+BAI classification for women:
+
+Age (years)     Underweight        Healthyweight       Overweight                   Obesity
+
+20 - 39        Less than 21%        21% to 33%        Greater than 33%        Greater than 39% 
+
+40 - 59        Less than 23%        23% to 35%        Greater than 35%        Greater than 41% 
+
+60 - 79        Less than 25%        25% to 38%        Greater than 38%        Greater than 43% 
+
+BAI classification for men: 
+
+Age (years)     Underweight        Healthyweight       Overweight                   Obesity 
+
+20 - 39        Less than 8%        8% to 21%        Greater than 21%        Greater than 26% 
+
+40 - 59        Less than 11%        11% to 23%        Greater than 23%        Greater than 29% 
+
+60 - 79        Less than 13%        13% to 25%        Greater than 25%        Greater than 31% 
+
+Given a char for male(m)/female(f), hip circumference(float) and height(float) and age(int) calculate BAI and print its category as "Underweight"or    "Healthy" or"Overweight" or "Obese".
+
+
+nput Format:
+Accept hip circumference(float),height(float),age(integer) and gender(char -> m or f) from user
+
+
+Output Format:
+Print "Underweight" or "Healthyweight" or "Overweight" or "Obesity".
+
+
+Constraints:
+1<=N<=10^15
+
+
+Sample Input 1:
+35.7 156.3 23
+f
+
+
+Sample Output 1:
+Underweight
+
+
+Sample Input 2:
+89.6 145.2 45
+m
+
+
+Sample Output 2:
+Obesity
+
+
+
+
+
+
+
+3.This is an effective way to calculate how much excess weight a person is carrying. Waist-to-hip ratio is often used as a measurement of obesity and a possible indicator of several health issues such as heart disease, diabetes, and high blood pressure. It is calculated by the ratio of waist circumference to hip circumference measurement in inches.
+For example, if a person(male) has a 30'' waist and 38'' hips, WHR = 30/38 = 0.78 hence,Normalweight.
+The figures in the chart below are based upon the standards set by the German Society for Sports Medicine and Prevention (DGSP).
+Men                    Women        Category
+<0.90                   <0.80        Normalweight
+0.90 to 0.99     0.80 to 0.84    Overweight
+1.0+                    0.85+            Obesity
+Given length of waist(inches) and hip(inches) calculate its WHR and print its respective category as "Normalweight" or "Overweight" or "Obesity".
+
+nput Format:
+Accept two integer (waist size,hip size) and a character(male (m) or female(f))
+
+
+Output Format:
+print "Normalweight" or "Overweight" or "Obesity".
+
+
+Constraints:
+1<=N<=10^15
+
+
+Sample Input 1:
+150 160
+m
+
+
+Sample Output 1:
+Overweight
+
+
+Sample Input 2:
+56 78
+m
+
+
+Sample Output 2:
+Normalweight
+
+
+
+
+
+
+4.Given a month number, room type, number of rooms, total number of stay days, Calculate the amount to be paid for the stay.
+
+month number ranges from  1-12 
+
+room type - 1-4 
+
+1- Basic - 1000/Night  2-Studio 2000/Night  3- Apartment - 5000/Night  4 -Individual  Villa - 8000/Night 
+
+Based on the month of booking a discount is applied on the final amount. 
+
+January - March - 5%
+
+April - May - 10% 
+
+June - September - 20% 
+
+October- November - 15% 
+
+December - 5%
+
+
+
+
+
+5. one person can afford free buffet(VEG or NONVEG)\\nIf number of persons >=16 , two persons can afford free buffet(VEG or NONVEG)\\nIf number of persons >=24 , three persons can afford free buffet(VEG or NONVEG)\\nCalculate the total amount to be paid and print it with two precisons.\\n"}'>Given day of week and number of persons opted for vegetarian and number of persons opted for non-vegetarian.
+WeekDays:
+Cost of Veg buffet : 750 NonVeg Buffet:850
+Weekends:
+Cost of Veg buffet : 850 NonVeg Buffet:950
+On Wednesdays extra 10% disocunt on each buffet.
+If number of persons >=8 , one person can afford free buffet(VEG or NONVEG)
+If number of persons >=16 , two persons can afford free buffet(VEG or NONVEG)
+If number of persons >=24 , three persons can afford free buffet(VEG or NONVEG)
+Calculate the total amount to be paid and print it with two precisons.
+
+
+
+
+
+6.A student has to attend an exam at a particular time (for example at 9:30 am).If the student arrives 1-30 minutes prior to the exam time,the student has came On time . If the student has arrived more than 30 minutes earlier, the student has come too early. If they have arrived after the time when the exam starts, they are late.
+Write a program that inputs the exam starting time and the time of student's arrival, and prints if the student has arrived on time, if they have arrived early or if they are late, as well as how many hours or minutes the student is early or late.
+"mm minutes before the start" for arriving less than an hour earlier.
+"hh:mm hours before the start" for arriving 1 hour or earlier. Always print minutes using 2 digits, for example "1:05".
+"mm minutes after the start" for arriving more than an hour late.
+"hh:mm hours after the start" for arriving late with 1 hour or more. Always print minutes using 2 digits, for example "1:03".
+
+
+
+
+7.A student has to travel n kilometers. He can choose between three types of transportation:
+Taxi.Day rate: 79 Rupee/km. Night rate: 90 Rupee/km.
+Bus. Day / Night rate: 9 Rupee/km. Can be used for distances of minimum 20 km.
+Train. Day / Night rate: 6 Rupee/km. Can be used for distances of minimum 100 km.
+Write a program that reads the number of kilometers n and period of the day (day-1 or night-0) and calculates the price for the cheapest transport.
+
+
+
+
+
+8.In a cinema hall the chairs are arranged in a rectangle shape. There are two types of screenings
+with tickets of different prices:
+1 - Premiere - a premiere screening, with price 350 Rupee
+2- Normal - a standard screening, with price 150 Rupee.
+Discount is applied for screening for children on a reduced price 50 Rupee
+Write a program that enters a **type of screening** (1 or 2),total number of persons and total number
+of childrens.A total of 7.5% GST will be added to total amount.
+Calculate the amount for tickets and result has to be printed as rounded up to 2 digits after the decimal point.
+
+
+
+
+
+9.A firm gets a request for creating a project for which a certain number of hours are needed. The firm has a certain number of days. During 10% of the days, the workers are being trained and cannot work on the project. A normal working day is 8 hours long. The project is important for the firm and every worker must work on it with overtime of 2 hours per day.
+The hours must be rounded down to the nearest integer (for example, 6.98 hours are rounded to 6 hours).
+Write a program that calculates whether the firm can finish the project on time and how many hours more are needed or left.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+1.
+#include<stdio.h>
+int main()
+{
+    float weight,height,result;
+    scanf("%f %f",&weight,&height);
+    result=((weight/height)/height)*10000;
+    //result=result*10000;
+    if(result<18.5)
+      printf("Underweight");
+    else if(result>=18.5&&result<=24.9)
+      printf("Healthyweight");
+    else if(result>=25.0&&result<=29.9)
+      printf("Overweight");
+    else
+      printf("Obesity");
+}
+
+
+2.
+'#include<stdio.h>
+#include<math.h>
+int main()
+{
+    float hip_circumference,height,BAI;
+    char ch;
+    int age;
+    scanf("%f %f",&hip_circumference,&height);
+    scanf("%d\n",&age);
+    scanf("%c",&ch);
+    BAI=((hip_circumference/(pow(height/100,1.5)))-18);
+    if(ch=='f')
+    {
+        switch(age)
+        {
+        case 20 ... 39:
+            {
+                if(BAI<21)
+                    printf("Underweight");
+                else if(BAI>=21&&BAI<=33)
+                     printf("Healthyweight");
+                else if(BAI>=34&&BAI<=39)
+                     printf("Overweight");
+                else
+                    printf("Obesity");
+                break;
+            }
+        case 40 ... 59:
+            {
+                if(BAI<23)
+                    printf("Underweight");
+                else if(BAI>=23&&BAI<=35)
+                     printf("Healthyweight");
+                else if(BAI>=36&&BAI<=41)
+                     printf("Overweight");
+                else
+                    printf("Obesity");
+                break;
+            }
+         case 60 ... 79:
+            {
+                if(BAI<25)
+                    printf("Underweight");
+                else if(BAI>=25&&BAI<=38)
+                     printf("Healthyweight");
+                else if(BAI>=39&&BAI<=43)
+                     printf("Overweight");
+                else
+                    printf("Obesity");
+                break;
+            }
+        }
+    }
+   else if(ch=='m')
+    {
+        switch(age)
+        {
+        case 20 ... 39:
+            {
+                if(BAI<8)
+                    printf("Underweight");
+                else if(BAI>=8&&BAI<=21)
+                     printf("Healthyweight");
+                else if(BAI>=22&&BAI<=26)
+                     printf("Overweight");
+                else
+                    printf("Obesity");
+                break;
+            }
+        case 40 ... 59:
+            {
+                if(BAI<11)
+                    printf("Underweight");
+                else if(BAI>=11&&BAI<=23)
+                     printf("Healthyweight");
+                else if(BAI>=24&&BAI<=29)
+                     printf("Overweight");
+                else
+                    printf("Obesity");
+                break;
+            }
+         case 60 ... 79:
+            {
+                if(BAI<13)
+                    printf("Underweight");
+                else if(BAI>=13&&BAI<=25)
+                     printf("Healthyweight");
+                else if(BAI>=26&&BAI<=31)
+                     printf("Overweight");
+                else
+                    printf("Obesity");
+                break;
+            }
+        }
+    }
+}
+
+
+
+
+
+3.
+
+#include<stdio.h>
+int main()
+{
+    int waist_inches,hip_inches;
+    scanf("%d %d\n",&waist_inches,&hip_inches);
+    char gender;
+    scanf("%c",&gender);
+    float WHR;
+    WHR=(float)waist_inches/hip_inches;
+    switch(gender)
+    {
+    case 'm':
+        {
+            if(WHR<0.90)
+                printf("Normalweight");
+            else if(WHR>=0.90&&WHR<=0.99)
+                printf("Overweight");
+            else
+                printf("Obesity");
+            break;
+        }
+    case 'f':
+        {
+            if(WHR<0.80)
+                printf("Normalweight");
+            else if(WHR>=0.80&&WHR<=0.84)
+                printf("Overweight");
+            else
+                printf("Obesity");
+            break;
+        }
+    }
+}
+
+
+4.
+#include<stdio.h>
+int main()
+{
+    int month_num,room_type,no_of_rooms,total_days,total;
+    scanf("%d %d %d %d",&month_num,&room_type,&no_of_rooms,&total_days);
+    if(room_type==1)
+        total=(1000*no_of_rooms)*total_days;
+    else if(room_type==2)
+        total=(2000*no_of_rooms)*total_days;
+    else if(room_type==3)
+        total=(5000*no_of_rooms)*total_days;
+    else if(room_type==4)
+        total=(8000*no_of_rooms)*total_days;
+    switch(month_num)
+    {
+    case 1 ... 3:
+        {
+            printf("Rs.%.2f",total-(total*0.05));
+            break;
+        }
+    case 4 ... 5:
+        {
+            printf("Rs.%.2f",total-(total*0.10));
+            break;
+        }
+    case 6 ... 9:
+        {
+            printf("Rs.%.2f",total-(total*0.20));
+            break;
+        }
+    case 10 ... 11:
+        {
+            printf("Rs.%.2f",total-(total*0.15));
+            break;
+        }
+    case 12:
+        {
+            printf("Rs.%.2f",total-(total*0.05));
+            break;
+        }
+    }
+}
+
+
+
+
+
+
+5.
+#include<stdio.h>
+int main()
+{
+    int day_of_week,no_of_persons_Veg,no_of_persons_NonVeg,veg_amount,nonveg_amount;
+    float amount,offer;
+    scanf("%d %d %d",&day_of_week,&no_of_persons_Veg,&no_of_persons_NonVeg);
+    int no_of_persons=no_of_persons_Veg+no_of_persons_NonVeg;
+    if(no_of_persons>=8)
+         no_of_persons=no_of_persons-(no_of_persons/8);
+    if(day_of_week==1 || day_of_week==7)
+    {
+            veg_amount=no_of_persons_Veg*850;
+            nonveg_amount=no_of_persons_NonVeg*950;
+    }
+    else
+    {
+             veg_amount=no_of_persons_Veg*750;
+             nonveg_amount=no_of_persons_NonVeg*850;
+    }
+    amount=veg_amount+nonveg_amount;
+    if(day_of_week!=4)
+     printf("%.2f",amount);
+    else
+    {
+        offer=amount-(amount*0.10);
+        printf("%.2f",offer);
+    }
+}
+
+
+6.
+
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    int start_hour,start_min;
+    int end_hour,end_min;
+    scanf("%d %d",&start_hour,&start_min);
+    scanf("%d %d",&end_hour,&end_min);
+    int total_sec1,result,hour,min;
+    int total_sec2;
+    total_sec1=(start_hour*3600)+(start_min*60);
+    total_sec2=(end_hour*3600)+(end_min*60);
+    if(total_sec1==total_sec2)
+         printf("On time");
+    else if(total_sec1<total_sec2)
+    {
+        result=abs(total_sec1-total_sec2);
+        hour=result/3600;
+        min=(result%3600)/60;
+        if(hour>0)
+        {
+            printf("Late\n");
+            printf("%d:%02d hours after the start",hour,min);
+        }
+        else
+        {
+            printf("Late\n");
+            printf("%d minutes after the start",min);
+        }
+    }
+    else
+    {
+        result=abs(total_sec1-total_sec2);
+        hour=result/3600;
+        min=(result%3600)/60;
+        if(hour>0)
+        {
+            printf("Early\n");
+            printf("%d:%02d hours before the start",hour,min);
+        }
+        else if(hour==0 && min<=30)
+        {
+            printf("On time\n");
+            printf("%d minutes before the start",min);
+        }
+        else
+        {
+            printf("Early\n");
+            printf("%d minutes before the start",min);
+        }
+    }
+}
+
+
+
+
+7.
+#include<stdio.h>
+int main()
+{
+    int kilometer,day_night;
+    scanf("%d %d",&kilometer,&day_night);
+    if(kilometer<20)
+    {
+        if(day_night==1)
+            printf("Rs.%d",kilometer*79);
+        else
+            printf("Rs.%d",kilometer*90);
+    }
+    else if(kilometer>=20&&kilometer<=99)
+    {
+        printf("Rs.%d",kilometer*9);
+    }
+    else
+    {
+        printf("Rs.%d",kilometer*6);
+    }
+
+}
+
+
+
+
+
+8.
+#include<stdio.h>
+int main()
+{
+   int screening,total_adult,total_children,total;
+   float amount_after_gst;
+   scanf("%d %d %d",&screening,&total_adult,&total_children);
+   if(screening==1)
+   {
+       total=((total_adult+total_children)*350)-(total_children*50);
+   }
+   else
+   {
+       total=((total_adult+total_children)*150)-(total_children*50);
+   }
+   amount_after_gst=total+(total*0.075);
+   printf("%.2f",amount_after_gst);
+}
+
+
+
+9.
+#include<stdio.h>
+int main()
+{
+    int hours,days,workers,total_days;
+    scanf("%d %d %d",&hours,&days,&workers);
+    total_days=(10*days)*0.1;
+    total_days=(days*10-total_days)*workers;
+    if(total_days-hours>0)
+         printf("Yes! %d hours left",total_days-hours);
+    else
+         printf("Not enough time! %d hours needed",hours-total_days);
+}
+

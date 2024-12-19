@@ -1,0 +1,588 @@
+
+1.Structures constitutes using OOPS approch[example : arrays(append operation)]
+ 
+
+
+1.Data (Arrays)
+
+1.1 Space for storing elements
+
+1.2 Capacity
+
+1.3 Size
+
+
+2.Operations
+
+1.1 add(elements) / append(element)
+
+1.2 add(index,element)/ insert(index,element)
+
+1.3 remove(index)
+
+1.4 set(index,element) / replace(index , element)
+
+1.5 get(index)
+
+1.6 search(key)-----[linear search , Binary search]
+
+1.7 sort()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+
+struct array{
+    int *A;
+    int n;
+    int length;
+};
+void append(struct array a[],int val)
+{
+    a->A[a->length]=val;
+    a->length++;
+}
+void display(struct array a)
+{
+    for(int i=0;i<a.length;i++)
+    {
+        printf("%d\t",a.A[i]);
+    }
+    
+}
+int main() {
+    int n;
+    scanf("%d",&n);
+    struct array arr;
+    arr.n=n;
+    arr.length=0;
+   arr.A=(int*)malloc(n*sizeof(int));
+   append(&arr,10);
+   append(&arr,20);
+   append(&arr,30);
+   display(arr);
+}
+
+-----------------------------------------------------------------------------------------------------------------
+
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+
+struct array{
+    int *A;
+    int n;
+    int length;
+};
+void append(struct array *a,int val)
+{
+    a->A[a->length]=val;
+    a->length++;
+}
+void insert(struct array *a,int index,int val)
+{
+    for(int i=a->length;i>=index;i--)
+    {
+        a->A[i+1]=a->A[i];
+    }
+    a->A[index]=val;
+    a->length++;
+}
+void display(struct array a)
+{
+    for(int i=0;i<a.length;i++)
+    {
+        printf("%d\t",a.A[i]);
+    }
+    printf("\n");
+    
+}
+int main() {
+    int n;
+    scanf("%d",&n);
+    struct array arr;
+    arr.n=n;
+    arr.length=0;
+   arr.A=(int*)malloc(n*sizeof(int));
+   append(&arr,10);
+   append(&arr,20);
+   append(&arr,30);
+   append(&arr,40);
+   display(arr);
+   insert(&arr,1,100);
+   display(arr);
+   
+}
+
+-------------------------------------------------------------------------------------------------------------------
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+
+struct array{
+    int *A;
+    int n;
+    int length;
+};
+void append(struct array *a,int val)
+{
+    a->A[a->length]=val;
+    a->length++;
+}
+void insert(struct array *a,int index,int val)
+{
+    for(int i=a->length;i>=index;i--)
+    {
+        a->A[i+1]=a->A[i];
+    }
+    a->A[index]=val;
+    a->length++;
+}
+void del(struct array *a,int index)
+{
+    for(int i=index+1;i<=a->length;i++)
+    {
+        a->A[i-1]=a->A[i];
+    }
+    a->length--;
+}
+void display(struct array a)
+{
+    for(int i=0;i<a.length;i++)
+    {
+        printf("%d\t",a.A[i]);
+    }
+    printf("\n");
+    
+}
+int main() {
+    int n;
+    scanf("%d",&n);
+    struct array arr;
+    arr.n=n;
+    arr.length=0;
+   arr.A=(int*)malloc(n*sizeof(int));
+   append(&arr,10);
+   append(&arr,20);
+   append(&arr,30);
+   append(&arr,40);
+   display(arr);
+   insert(&arr,1,100);
+   display(arr);
+   del(&arr,1);
+   display(arr);
+   
+   
+}
+
+---------------------------------------------------------------------------------------------------------------
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+
+struct array{
+    int *A;
+    int n;
+    int length;
+};
+void append(struct array *a,int val)
+{
+    a->A[a->length]=val;
+    a->length++;
+}
+void insert(struct array *a,int index,int val)
+{
+    for(int i=a->length;i>=index;i--)
+    {
+        a->A[i+1]=a->A[i];
+    }
+    a->A[index]=val;
+    a->length++;
+}
+void del(struct array *a,int index)
+{
+    for(int i=index+1;i<=a->length;i++)
+    {
+        a->A[i-1]=a->A[i];
+    }
+    a->length--;
+}
+void set(struct array *a,int index,int val)
+{
+    if(index<=a->length)
+    a->A[index]=val;
+    else
+    printf("Inadequte length of array\n");
+}
+void display(struct array a)
+{
+    for(int i=0;i<a.length;i++)
+    {
+        printf("%d\t",a.A[i]);
+    }
+    printf("\n");
+    
+}
+int main() {
+    int n;
+    scanf("%d",&n);
+    struct array arr;
+    arr.n=n;
+    arr.length=0;
+   arr.A=(int*)malloc(n*sizeof(int));
+   append(&arr,10);
+   append(&arr,20);
+   append(&arr,30);
+   append(&arr,40);
+   display(arr);
+   insert(&arr,1,100);
+   display(arr);
+   del(&arr,1);
+   display(arr);
+   set(&arr,0,50);
+   display(arr);
+   
+   
+   
+}
+
+
+-----------------------------------------------------------------------------------------------------------------
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+
+struct array{
+    int *A;
+    int n;
+    int length;
+};
+void append(struct array *a,int val)
+{
+    a->A[a->length]=val;
+    a->length++;
+}
+void insert(struct array *a,int index,int val)
+{
+    for(int i=a->length;i>=index;i--)
+    {
+        a->A[i+1]=a->A[i];
+    }
+    a->A[index]=val;
+    a->length++;
+}
+void del(struct array *a,int index)
+{
+    for(int i=index+1;i<=a->length;i++)
+    {
+        a->A[i-1]=a->A[i];
+    }
+    a->length--;
+}
+void set(struct array *a,int index,int val)
+{
+    if(index<=a->length)
+    a->A[index]=val;
+    else
+    printf("Inadequte length of array\n");
+}
+int get(struct array a,int index)
+{
+    if(index<a.length)
+     return a.A[index];
+    else
+    return -1;
+}
+void display(struct array a)
+{
+    for(int i=0;i<a.length;i++)
+    {
+        printf("%d\t",a.A[i]);
+    }
+    printf("\n");
+    
+}
+int main() {
+    int n;
+    scanf("%d",&n);
+    struct array arr;
+    arr.n=n;
+    arr.length=0;
+   arr.A=(int*)malloc(n*sizeof(int));
+   append(&arr,10);
+   append(&arr,20);
+   append(&arr,30);
+   append(&arr,40);
+   display(arr);
+   insert(&arr,1,100);
+   display(arr);
+   del(&arr,1);
+   display(arr);
+   set(&arr,3,50);
+   display(arr);
+   int x=get(arr,3);
+   if(x<0)
+   printf("Input is inappropriate");
+   else
+   printf("%d is the element  \n",x);
+   
+   
+   
+}
+
+-----------------------------------------------------------------------------------------------------------------
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+
+struct array{
+    int *A;
+    int n;
+    int length;
+};
+void append(struct array *a,int val)
+{
+    a->A[a->length]=val;
+    a->length++;
+}
+void insert(struct array *a,int index,int val)
+{
+    for(int i=a->length;i>=index;i--)
+    {
+        a->A[i+1]=a->A[i];
+    }
+    a->A[index]=val;
+    a->length++;
+}
+void del(struct array *a,int index)
+{
+    for(int i=index+1;i<=a->length;i++)
+    {
+        a->A[i-1]=a->A[i];
+    }
+    a->length--;
+}
+void set(struct array *a,int index,int val)
+{
+    if(index<=a->length)
+    a->A[index]=val;
+    else
+    printf("Inadequte length of array\n");
+}
+int get(struct array a,int index)
+{
+    if(index<a.length)
+     return a.A[index];
+    else
+    return -1;
+}
+void Lsearch(struct array a,int key)
+{
+    int flag=-1;
+    for(int i=0;i<a.length;i++)
+    {
+        if(a.A[i]==key)
+        {
+            flag=i;
+            break;
+        }
+    }
+    if(flag==-1)
+    {
+        printf("Element not found\n");
+    }
+    else
+    {
+        printf("%d is found at index of %d\n",key,flag);
+    }
+}
+void display(struct array a)
+{
+    for(int i=0;i<a.length;i++)
+    {
+        printf("%d\t",a.A[i]);
+    }
+    printf("\n");
+    
+}
+int main() {
+    int n;
+    scanf("%d",&n);
+    struct array arr;
+    arr.n=n;
+    arr.length=0;
+   arr.A=(int*)malloc(n*sizeof(int));
+   append(&arr,10);
+   append(&arr,20);
+   append(&arr,30);
+   append(&arr,40);
+   append(&arr,50);
+   display(arr);
+   insert(&arr,1,100);
+   display(arr);
+   del(&arr,1);
+   display(arr);
+   set(&arr,3,60);
+   display(arr);
+   int x=get(arr,3);
+   if(x<0)
+   printf("Input is inappropriate");
+   else
+   printf("%d is the element  \n",x);
+   Lsearch(arr,30);
+   
+   
+}
+
+-----------------------------------------------------------------------------------------------------------------
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+
+struct array{
+    int *A;
+    int n;
+    int length;
+};
+void append(struct array *a,int val)
+{
+    a->A[a->length]=val;
+    a->length++;
+}
+void insert(struct array *a,int index,int val)
+{
+    for(int i=a->length;i>=index;i--)
+    {
+        a->A[i+1]=a->A[i];
+    }
+    a->A[index]=val;
+    a->length++;
+}
+void del(struct array *a,int index)
+{
+    for(int i=index+1;i<=a->length;i++)
+    {
+        a->A[i-1]=a->A[i];
+    }
+    a->length--;
+}
+void set(struct array *a,int index,int val)
+{
+    if(index<=a->length)
+    a->A[index]=val;
+    else
+    printf("Inadequte length of array\n");
+}
+int get(struct array a,int index)
+{
+    if(index<a.length)
+     return a.A[index];
+    else
+    return -1;
+}
+void Lsearch(struct array a,int key)
+{
+    int flag=-1;
+    for(int i=0;i<a.length;i++)
+    {
+        if(a.A[i]==key)
+        {
+            flag=i;
+            break;
+        }
+    }
+    if(flag==-1)
+    {
+        printf("Element not found\n");
+    }
+    else
+    {
+        printf("%d is found at index of %d\n",key,flag);
+    }
+}
+void Bsearch(struct array a,int key)
+{
+    int start=0,end=a.length,flag=-1;
+   // int mid=(start+end)/2;
+    while(start<=end)
+    {
+        int mid=(start+end)/2;
+        if(key==a.A[mid])
+        {
+        flag=mid;
+        break;
+        }
+        else if(key<a.A[mid])
+        {
+        end=mid-1;
+        }
+        else 
+        {
+        start=mid+1;
+        }
+    }
+     if(flag==-1)
+    {
+        printf("Element not found\n");
+    }
+    else
+    {
+        printf("%d is found at index of %d\n",key,flag);
+    }
+}
+void display(struct array a)
+{
+    for(int i=0;i<a.length;i++)
+    {
+        printf("%d\t",a.A[i]);
+    }
+    printf("\n");
+    
+}
+int main() {
+    int n;
+    scanf("%d",&n);
+    struct array arr;
+    arr.n=n;
+    arr.length=0;
+   arr.A=(int*)malloc(n*sizeof(int));
+   append(&arr,10);
+   append(&arr,20);
+   append(&arr,30);
+   append(&arr,40);
+   append(&arr,50);
+   display(arr);
+   insert(&arr,1,100);
+   display(arr);
+   del(&arr,1);
+   display(arr);
+   set(&arr,3,60);
+   display(arr);
+   int x=get(arr,3);
+   if(x<0)
+   printf("Input is inappropriate");
+   else
+   printf("%d is the element  \n",x);
+   Lsearch(arr,20);
+   Bsearch(arr,50);
+   
+   
+}

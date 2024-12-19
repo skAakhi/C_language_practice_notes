@@ -1,0 +1,440 @@
+1.
+Complete the function print_left_to_right() , which receives number of elements and array as input. Function should print the array elements from left to right.
+
+
+
+2.
+Complete the function print_right_to_left , which receives number of elements and array as input. Function should print the array elements from right to left.  
+
+
+
+3.Complete the function count_zeros_ones() , which receives number of elements and array as input.
+ Function should count number of ones and zeroes in the array and print it.
+
+
+
+4.
+Complete the function count_odd_even() , which receives number of elements and array as input. 
+Function should count number of even numbers and odd numbers in the array and print it.
+
+
+
+5.
+Complete the function Find_majority_ele() , which receives number of elements and sorted array as input. 
+Function should find  and print whether any element in the array appears more than half of the size.
+
+
+6.Complete the function sum_of_ele(), which receives number of elements and array as input. 
+Function should find  and return the sum of all elements in the given array.
+
+
+7.Complete the function Search_element(), which receives number of elements , array and search element as input. 
+Function should find and return 1 if search element is found in the input array, return 0 if not found.
+
+
+8.Complete the function largest_ele(), which receives number of elements and array as input. 
+Function should find and return the largest element in the array.
+
+9.Complete the function second_larg_ele(), which receives number of elements and array as input. 
+Function should find and return the second largest element in the array.
+
+
+10.Complete the function smallest_ele(), which receives number of elements and array as input. 
+Function should find and return the smallest element in the array.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1.
+#include<stdio.h>
+void print_left_to_right(int no_ele,long long int arr[])
+{  
+  int index;
+  for(index=0;index<no_ele;index++)
+    printf("%lld ",arr[index]);
+}
+int main()
+{
+int no_ele,index;
+scanf("%d",&no_ele);
+long long int arr[no_ele];
+for(index=0;index<no_ele;index++)
+scanf("%lld",&arr[index]);
+print_left_to_right(no_ele,arr);
+return 0;
+}
+
+
+
+
+
+
+2.
+#include<stdio.h>
+void print_right_to_left(int no_ele,long long int arr[])
+{  
+  int index;
+  for(index=no_ele-1;index>=0;index--)
+    printf("%lld ",arr[index]);
+}
+int main()
+{
+int no_ele,index;
+scanf("%d",&no_ele);
+long long int arr[no_ele];
+for(index=0;index<no_ele;index++)
+scanf("%lld",&arr[index]);
+print_right_to_left(no_ele,arr);
+return 0;
+}
+
+
+
+
+
+
+3.
+#include<stdio.h>
+void count_zeros_ones(int no_ele,int arr[])
+{  
+    int index,zero=0,one=0;
+    for(index=0;index<no_ele;index++)
+{
+if(arr[index]==0)
+{
+zero++;
+}
+else
+{
+one++;
+}
+}
+printf("zc = %d\noc = %d",zero,one);
+}
+int main()
+{
+int no_ele,index;
+scanf("%d",&no_ele);
+int arr[no_ele];
+for(index=0;index<no_ele;index++)
+{
+scanf("%d",&arr[index]);
+}
+count_zeros_ones(no_ele,arr);
+
+return 0;
+}
+
+
+
+
+
+
+
+4.
+#include<stdio.h>
+void count_odd_even(int no_ele,long long int arr[])
+{  
+    int index,even=0,odd=0;
+    for(index=0;index<no_ele;index++)
+   {
+   if(arr[index]%2==0)
+   even++;
+   else
+   odd++;
+   }
+    printf("Odd = %d\nEven = %d",odd,even);
+}
+int main()
+{
+int no_ele,index;
+scanf("%d",&no_ele);
+long long int arr[no_ele];
+for(index=0;index<no_ele;index++)
+scanf("%lld",&arr[index]);
+count_odd_even(no_ele,arr);
+return 0;
+}
+
+
+
+
+
+
+
+5.
+# include <stdio.h>
+void Find_majority_ele(int no_ele,long long int arr[])
+{ 
+    int index,flag[10000]={0},ctr,compare;
+    for(index=0;index<no_ele;index++)
+{
+ctr=1;
+if(flag[index]==0)
+{
+for(compare=index+1;compare<no_ele;compare++)
+{
+if(arr[index]==arr[compare])
+{
+ctr++;
+flag[compare]=1;
+}
+}
+if(ctr>=(no_ele/2))
+break;
+}
+}
+if(ctr >= (no_ele/2))
+printf("The majority element is : %lld", arr[index]);
+else
+printf("No majority element found in the array");
+}
+int main()
+{
+int index,no_ele;
+scanf("%d",&no_ele);
+long long int arr[no_ele];
+for(index=0;index<no_ele;index++)
+scanf("%lld",&arr[index]);
+Find_majority_ele(no_ele,arr);
+return 0;
+}
+
+
+
+
+
+
+
+
+
+6.
+#include<stdio.h>
+int sum_of_ele(int no_ele,int arr[])
+{  
+    int index,sum=0;
+    for(index=0;index<no_ele;index++)
+{
+sum=sum+arr[index];
+}
+return sum;
+}
+int main()
+{
+int no_ele,index;
+scanf("%d",&no_ele);
+int arr[no_ele];
+for(index=0;index<no_ele;index++)
+{
+scanf("%d",&arr[index]);
+}
+printf("%d",sum_of_ele(no_ele,arr));
+return 0;
+}
+
+
+
+
+
+
+
+
+
+7.
+#include<stdio.h>
+int Search_element(int no_ele,long long int arr[],long long int element)
+{
+   int index = 0;
+while (index < no_ele && element != arr[index]) {
+index++;
+}
+if (index < no_ele)
+  return 1;
+else
+  return 0;
+}
+int main()
+{
+int  no_ele, index;
+scanf("%d", &no_ele);
+long long int element,arr[no_ele];
+for (index = 0; index < no_ele; index++) {
+scanf("%lld", &arr[index]);
+}
+scanf("%lld", &element);
+int result;
+result=Search_element(no_ele,arr,element);
+if(result==1)
+  printf("Found");
+else 
+  printf("Not found");
+
+}
+
+
+
+
+
+
+
+8.
+#include<stdio.h>
+long long int largest_ele(int no_ele,long long int arr[])
+{ 
+    long long int largest,index;
+largest = arr[0];
+for (index = 1; index < no_ele; index++)
+{
+if (largest < arr[index])
+largest = arr[index];
+}
+  return largest;
+}
+int main()
+{
+int  no_ele, index;
+scanf("%d", &no_ele);
+long long int arr[no_ele];
+for (index = 0; index < no_ele; index++)
+scanf("%lld", &arr[index]);
+printf("%lld",largest_ele(no_ele,arr));
+
+return 0;
+}
+
+
+
+
+
+
+
+9.
+#include<stdio.h>
+long long int second_larg_ele(int no_ele,long long int arr[])
+{
+    long long int largest,secondlarg;
+    int index;
+    largest = arr[0];
+    secondlarg = arr[0];
+for (index = 1; index < no_ele; index++)
+{
+if (largest < arr[index]){
+    secondlarg = largest;
+    largest =  arr[index];
+}
+else if (secondlarg < arr[index]){
+    secondlarg = arr[index];
+}
+else if(secondlarg == largest){
+    secondlarg = arr[index];
+}
+
+
+}
+  return secondlarg;
+}
+int main()
+{
+int  no_ele, index;
+scanf("%d", &no_ele);
+long long int arr[no_ele];
+for (index = 0; index < no_ele; index++)
+scanf("%lld", &arr[index]);
+printf("%lld",second_larg_ele(no_ele,arr));
+
+return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+10.
+#include<stdio.h>
+long long int smallest_ele(int no_ele,long long int arr[])
+{
+    long long int smallest;
+    int index;
+smallest = arr[0];
+for (index = 1; index < no_ele; index++)
+{
+if (smallest > arr[index])
+smallest = arr[index];
+}
+  return smallest;
+}
+int main()
+{
+int  no_ele, index;
+scanf("%d", &no_ele);
+long long int arr[no_ele];
+for (index = 0; index < no_ele; index++)
+scanf("%lld", &arr[index]);
+printf("%lld",smallest_ele(no_ele,arr));
+return 0;
+}

@@ -1,0 +1,19 @@
+
+
+Enums:
+
+
+example:
+#include<stdio.h>
+
+enum week{Mon, Tue, Wed, Thur, Fri, Sat, Sun}day1;//--> can create object here aslo and inside of main() at same time]
+
+int main()
+{
+    enum week day;
+    day = Wed;
+    day1=Mon;
+    printf("%d\n",day);
+    printf("%d",day1);
+    return 0;
+}

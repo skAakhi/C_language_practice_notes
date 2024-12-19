@@ -1,0 +1,100 @@
+
+
+FILES:
+
+1.Copying content from one file to another file
+
+
+
+2.Counting number of lines , charachters , words in file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1.
+
+#include <stdio.h>
+#include<stdlib.h>
+int main()
+{
+    FILE *p=NULL,*p1=NULL;
+    char str[50];
+    p=fopen("abc.txt","r");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    p1=fopen("Hello.txt","w");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    while(fgets(str,sizeof(str),p)!=NULL)
+    {
+    fputs(str,p1);
+        
+    }
+    
+    fclose(p);
+    fclose(p1);
+    printf("Sucessfully copied to another file");
+     
+     return 0;
+} 
+
+
+
+
+
+
+
+
+2.
+
+#include <stdio.h>
+#include<stdlib.h>
+int main()
+{
+    FILE *p=NULL,*p1=NULL;
+    char ch;
+    int line=1,charater=0,word=1;
+    p=fopen("abc.txt","r");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    while((ch=fgetc(p))!=EOF)
+    {
+        if(ch>=65 && ch<=122)
+        {
+            charater++;
+        }
+        else if(ch==' ')
+        {
+            word++;
+        }
+        else if(ch=='\n'){
+            line++;
+        }
+    }
+    printf("LINE:%d charachter:%d Word:%d",line,charater,word);
+    
+    fclose(p);
+    //fclose(p1);
+   // printf("%d %d %d",line,charater,word);
+     
+     return 0;
+}

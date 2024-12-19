@@ -1,0 +1,460 @@
+1.
+Find whether the given number is Kaprekar number  
+Explanation: A Kaprekar number is a number whose square when divided into two parts and such that sum of parts is equal to
+ the original number and none of the parts has value 0. ex: 297 297^2 = 88209 => 88 + 209 = 297 => Kaprekar number 
+45 45^2=2025 => 20+25 = 45 => Kaprekar Number
+
+
+
+2.
+Given a number, write a program to check whether it is a Happy Number or Not .
+Find Sum of square of individual digits until the number reaches single digit,if the number is 1 it is Happy number, 
+if it reaches 4 it is Not a Happy number.  ex: 86 8^2+6^2= 64+36=100 1^2+0^2+0^2=1+0+0=1 Happy number
+
+
+
+
+
+3.Given an integer as input, swap the digits alternately.
+
+Input : 1234    Output:2143
+
+Input : 123     Output:213
+
+
+
+
+
+
+4.
+Given a number, preserve the first occurence of the digit and remove the duplicate occurences of the same digit. 
+Start reading the digits from left to right.
+
+
+
+
+
+
+5.Swap digits based on the given position
+
+
+
+
+
+6.
+Given a number, separate the odd and even digits of the number without changing the order
+
+
+
+
+7.Given two numbers, Check whether the first number is rotated version of the other number or vice versa
+
+
+
+
+8.
+Given a number check whether its digits are in increasing order or decreasing order  or not
+
+
+
+
+9.
+Given a number check whether its a pandigital number or not. Pandigital: 
+A number is called a pandigital number if each digit from 1 to 9 occurs only once in that number
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------
+1.#include<stdio.h> 
+long long int power1(long long int);
+int isKaprekar(long long int);
+int main() {
+    long long int num ;
+    scanf("%lld" , &num);
+    if( isKaprekar(num)) 
+    printf("YES");
+    else 
+    printf("NO");
+    return 0 ;
+}
+long long int power1(long long int num)
+{
+    long long int power ;
+    power = 1 ;
+    while(num/power )
+    power *= 10;
+    return power;
+}
+int isKaprekar(long long int num) 
+{ 
+    long long int sq , part1 , part2 , power;
+    power = power1(num);
+    sq = num * num;
+    part1 = sq / power;
+    part2 = sq % power ;
+    if( part1 + part2 == num) 
+    return 1;
+    else {
+        power *= 10;
+        part1 = sq / power;
+        part2 = sq % power ;
+        if(part1 + part2 == num)
+        return 1;
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+
+2.
+#include<stdio.h>
+
+int main()
+{
+ long long int digit,number,temp,sum=0;
+
+ scanf("%lld",&number);
+ while(sum!=1 && sum!=4)
+{
+ sum=0;
+ while(number>0)
+ {
+ digit=number%10;
+ sum+=(digit*digit);
+ number=number/10;
+ }
+ number=sum;
+ }
+
+ if(sum==1)
+ printf("Happy Number\n");
+ else
+ printf("UnHappy Number\n");
+ return 0;
+}
+
+
+
+
+
+
+
+3.#include<stdio.h>
+int main()
+{
+long long int num,count=0,safe,digit,digits,swap,power=1,ans=0;
+ scanf("%lld",&num);
+ safe=num;
+ while(num)
+ {
+ count++;
+ num/=10;
+ }
+ num=safe;
+ if(count%2==1)
+ {
+ digit=num%10;
+ num/=10;
+ }
+ while(num)
+ {
+ digits=num%100;
+ swap=(digits%10)*10+(digits/10);
+ ans=ans+(swap*power);
+ power*=100;
+ num/=100;
+ }
+ if(count%2==1)
+ printf("%lld",ans*10+digit);
+ else
+ printf("%lld",ans);
+ return 0;
+}
+
+
+
+
+
+
+
+
+4.
+#include<stdio.h>
+int main()
+{
+ int digit[10]={0};
+ long long int num,pv=1;
+ scanf("%lld",&num);
+ while(num/pv)
+ pv=pv*10;
+ pv=pv/10;
+ while(pv!=0)
+ {
+ if(digit[(num/pv)%10]==0)
+ {
+ digit[(num/pv)%10]++;
+ pv=pv/10;
+ continue;
+ }
+ int rem=num%pv;
+ num=(num/pv)/10;
+ num=(num*pv)+rem;
+ pv=pv/10;
+ }
+ printf("%lld",num);
+ return 0;
+}
+
+
+
+
+
+
+
+5.
+#include<stdio.h>
+
+int main(){
+    int num,pos1,pos2,s1,s2,count=0,ans=0,rem;
+    scanf("%d%d%d",&num,&pos1,&pos2);
+    
+    int temp=num;
+    while(temp!=0){
+        count++;
+        rem=temp%10;
+        if(count==pos1)
+            s1=rem;
+            
+        if(count==pos2)
+            s2=rem;
+            
+        temp/=10;
+    }
+    count=0;
+    while(num!=0){
+        count++;
+        if(count==pos1)
+            ans = ans*10 + s2;
+        else if(count==pos2)
+            ans = ans*10 + s1;
+        else
+            ans = ans*10 + num%10;
+            
+        num/=10;
+    }
+    while(ans!=0){
+        num=num*10 + ans%10;
+        ans/=10;
+    }
+    
+    printf("%d",num);
+}
+
+
+
+
+
+
+
+
+6.
+#include<stdio.h>
+int main()
+{
+long long int num,input,digit,even=0,odd=0,even_place=1,odd_place=1;
+ scanf("%lld%lld",&num,&input);
+ while(num)
+ {
+ digit=num%10;
+ if(digit%2==0)
+
+ {
+ even=even+(digit*even_place);
+ even_place*=10;
+ }
+ else
+ {
+ odd=odd+(digit*odd_place);
+ odd_place*=10;
+ }
+ num/=10;
+}
+if(input==1)
+ printf("%lld",even*odd_place+odd);
+else
+ printf("%lld",odd*even_place+even);
+
+return 0;
+}
+
+
+
+
+
+
+7.#include<stdio.h>
+int main()//entry point
+{
+  long long int num1;
+  long long int num2;
+  long long int power=1;
+  int ctr;
+  int no_of_digits=0;
+  scanf("%lld",&num1);
+  scanf("%lld",&num2);
+  while(num1/power)
+  {
+      power=power*10;
+      no_of_digits+=1;
+  }
+  power=power/10;
+  int last_digit;
+  for(ctr=1;ctr<=no_of_digits;ctr+=1)
+  {
+        last_digit=num1%10;
+        num1=num1/10;
+        num1=last_digit*power+num1;
+        //printf("%d ",num1);
+        if(num1==num2&&num1>=power)
+            break;
+  }
+   if(ctr<no_of_digits)
+       printf("YES");
+   else
+        printf("NO");
+  return 0;
+}
+
+
+
+
+
+
+8.
+#include<stdio.h>
+int main()//entry point
+{
+  long long int input;
+  scanf("%lld",&input);
+  int digit1;
+  int digit2;
+
+  digit1=input%10;
+  input/=10;
+  digit2=input%10;
+  input/=10;
+  if(input<10)
+    printf("Not");
+  else if(input<100)
+  {
+      if(digit1>digit2)
+        printf("Increasing");
+      else if(digit1<digit2)
+        printf("Decreasing");
+      else
+        printf("Not");
+  }
+  int prev_digit;
+  int curr_digit;
+  if(digit1>digit2)//inc
+  {
+      prev_digit=digit2;
+      while(input)
+      {
+          curr_digit=input%10;
+          if(curr_digit>=prev_digit)
+            break;
+          input/=10;
+          prev_digit=curr_digit;
+      }
+      if(input==0)
+        printf("Increasing");
+      else
+        printf("Not");
+  }
+  else if(digit1<digit2)
+  {
+      prev_digit=digit2;
+      while(input)
+      {
+          curr_digit=input%10;
+          if(curr_digit<=prev_digit)
+            break;
+          input/=10;
+          prev_digit=curr_digit;
+      }
+      if(input==0)
+        printf("Decreasing");
+      else
+         printf("Not");
+
+  }
+  else
+    printf("Not");
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+9.#include<stdio.h>
+int main()//entry point
+{
+ long long int input ;
+ scanf("%lld",&input);
+ int check_digit;
+ long long int copy;
+ int digit;
+ int digit_ctr;
+ for(check_digit=1;check_digit<=9&&input<1000000000;check_digit+=1)
+ {
+     copy=input;
+     digit_ctr=0;
+     while(input)
+     {
+         digit=input%10;
+         if(digit==check_digit)
+            digit_ctr+=1;
+         input/=10;
+     }
+     input=copy;
+     if(digit_ctr!=1)
+        break;
+ }
+ if(check_digit>9)
+    printf("Pandigital Number");
+ else
+    printf("Not a Pandigital Number");
+  return 0;
+}
+
+
+

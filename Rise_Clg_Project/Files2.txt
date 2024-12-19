@@ -1,0 +1,248 @@
+FILES:
+
+
+
+MODES:
+1.r+
+[read/write in existing file] if file doesnt exist wont create
+
+
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+    FILE *p=NULL;
+    //char str[50];
+    p=fopen("abc.txt","r+");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    fputs("IAS",p);
+    fputs("OFFICER",p);
+    //fputc('z',p);
+    
+    fclose(p);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+1.1
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+    FILE *p=NULL;
+    //char str[50];
+    p=fopen("abc.txt","r+");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    char ch;
+    while((ch=fgetc(p))!=EOF){
+        printf("%c",ch);
+    }
+    fputs("IAS",p);
+    fputs("OFFICER",p);
+    //fputc('z',p);
+    
+    fclose(p);
+    
+    return 0;
+}
+
+file:IASOFFICERzIASOFFICER [appending from last]
+
+
+
+1.2
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+    FILE *p=NULL;
+    char str[50];
+    p=fopen("abc.txt","r+");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    //fseek(p,0,SEEK_END);//-------------------------------->If you include this statement will write from last line and wont loose existing charachter if not will overide on existing charachters
+    printf("Enter string: ");
+    scanf("%[^\n]s",str);
+    fputs(str,p);
+    rewind(p);
+    while(fgets(str,sizeof(str),p)!=NULL)
+    {
+        printf("%s",str);
+    }
+    
+    fclose(p);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+2.w+
+->read/write
+->if doent exist will create new_file
+->if file exist , then previous content would be earsed
+
+
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+    FILE *p=NULL;
+    //char str[50];
+    p=fopen("abc.txt","w+");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    fputs("IAS",p);
+    fputs("OFFICER",p);
+    fputc('z',p);
+    rewind(p);//----------------->used to point the cursor from last_line to first_line
+    char ch;
+    while((ch=fgetc(p))!=EOF){
+        printf("%c",ch);
+    }
+    
+    fclose(p);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+3.a+
+->[Can append in existing file and can able read from existing file]
+
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+    FILE *p=NULL;
+    char str[50];
+    p=fopen("abc.txt","a+");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    printf("Enter content: ");
+    scanf("%[^\n]s",str);
+    fputs(str,p);
+    printf("Sucessfully appended\n");
+    rewind(p);//----------------->used to point the cursor from last_line to first_line
+    // char ch;
+    // while((ch=fgetc(p))!=EOF){
+    //     printf("%c",ch);
+    // }
+    //or
+    // while(fgets(str,sizeof(str),p)!=NULL)
+    // {
+    //     printf("%s",str);
+    // }
+    
+    fclose(p);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Use of ftell() and fseek() functions:
+
+
+
+1.
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+    FILE *p=NULL;
+    char str[50]="Aakhib is earning more than 90Lakhs";
+    char ch='A';
+    int id=101;
+    char dup[50];
+    p=fopen("abc.txt","w");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    fprintf(p,"ID:%d\nName:%s\nDEPT:%c",id,str,ch);
+    fclose(p);
+     
+    p=fopen("abc.txt","r");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+   // printf("%ld\n",ftell(p));
+    fseek(p,8,SEEK_SET);        //------------------>(pointer,offset(pointing position),SEEK_SET(will point from initialo))// SEEK_SET,SEEK_CUR,SEEK_END
+    // printf("%ld",ftell(p)); //------------------->Will print the pointing position(its like index)
+    //rewind(p);------------------------------------>This rewind() will help to point the cusor again to 0th index of first line
+    while((ch=fgetc(p))!=EOF)
+    {
+        printf("%c",ch);
+    }
+
+    fclose(p);
+    
+    return 0;
+}
+
+
+file content:
+ID:101
+Name:Aakhib is earning more than 90Lakhs
+DEPT:A
+
+
+output:
+ame:Aakhib is earning more than 90Lakhs
+DEPT:A
+
+

@@ -1,0 +1,210 @@
+
+
+typedef[keyword]:
+
+
+example:
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+typedef int a;
+
+int main() {
+     a var=10;
+    printf("%d",var);
+  
+    return 0;
+}
+
+
+2.
+// Online C compiler to run C program online
+#include <stdio.h>
+typedef struct student{
+    int id;
+    char name[30];
+    float marks;
+}student;
+
+int main() {
+     student s={.name="Aakhib",.id=11,.marks=98.00};
+     printf("%d %s %f",s.id,s.name,s.marks);
+    return 0;
+}
+
+
+
+
+
+2.1------------------------------------------->string value may could be overided using scanf() function
+// Online C compiler to run C program online
+#include <stdio.h>
+typedef struct student{
+    int id;
+    char name[30];
+    float marks;
+}student;
+
+int main() {
+     student s={.name="Aakhib",.id=11,.marks=98.00};
+     scanf("%s",s.name);
+     printf("%d %s %f",s.id,s.name,s.marks);
+    return 0;
+}
+
+
+
+
+
+
+
+BITFEILDS:
+
+
+struct student1 typically occupies 1 byte, as 4 bits (2 + 2) can fit into 1 byte, 
+but padding and alignment may increase it.
+struct student2 size will depend on the system's unsigned int size, 
+which is commonly 4 bytes per field, making it 8 bytes in total.
+
+
+
+
+
+
+
+1.
+// C program to illustrate the self referential structures
+#include <stdio.h>
+struct student1{
+    unsigned int mem1:2;
+    unsigned int mem2:2;
+};
+struct student2{
+    unsigned int mem1;
+    unsigned int mem2;
+}s2;
+int main()
+{
+    struct student1 s;
+    s.mem1=2;
+    s.mem2=3;
+    printf("mem1=%d mem2=%d\n",s.mem1,s.mem2);
+    //printf("sizeofmem1=%d sizeofmem2=%d\n",sizeof(s.mem1),sizeof(s.mem2));
+    printf("Total size=%d\n",sizeof(struct student1));
+     printf("Total size=%d\n",sizeof(struct student2));
+}
+
+
+OUTPUT:
+mem1=2 mem2=3
+Total size=4
+Total size=8
+
+
+
+
+
+
+//But when i pack memory using #pragma pack(1) , which leads to avoid padding and alignment
+
+1.1
+// C program to illustrate the self referential structures
+#include <stdio.h>
+#pragma pack(1)
+struct student1{
+    unsigned int mem1:2;
+    unsigned int mem2:2;
+};
+struct student2{
+    unsigned int mem1;
+    unsigned int mem2;
+}s2;
+int main()
+{
+    struct student1 s;
+    s.mem1=2;
+    s.mem2=3;
+    printf("mem1=%d mem2=%d\n",s.mem1,s.mem2);
+    //printf("sizeofmem1=%d sizeofmem2=%d\n",sizeof(s.mem1),sizeof(s.mem2));
+    printf("Total size=%d\n",sizeof(struct student1));
+     printf("Total size=%d\n",sizeof(struct student2));
+}
+
+output:
+mem1=2 mem2=3
+Total size=1
+Total size=8
+
+
+
+
+
+
+
+Lab Question:[With proper example]
+
+2.
+// Online C compiler to run C program online
+#include <stdio.h>
+//#pragma pack(1)
+struct cal{
+  unsigned int dd:5;
+   unsigned int mm:4;
+   unsigned  int yy:6;
+}c;
+
+int main() {
+    int t_dd,t_mm,t_yy;
+   // printf("%d",sizeof(c));//---->4 Bytes
+
+//   printf("Enter DD:MM:YY :");
+//   scanf("%d%d%d",&t_dd,&t_mm,&t_yy);
+  
+//   if(t_dd<1 || t_dd>31 || t_mm<1|| t_mm>12 || t_yy<1|| t_yy>127)
+//   {
+//       printf("Invalid");
+//   }
+//   c.dd=t_dd;
+//   c.mm=t_mm;
+//   c.yy=t_yy;
+//   printf("%d:%d:%d",c.dd,c.mm,c.yy);
+
+    return 0;
+}
+
+
+
+
+
+
+
+2.1
+// Online C compiler to run C program online
+#include <stdio.h>
+#pragma pack(1)
+struct cal{
+  unsigned int dd:5;
+   unsigned int mm:4;
+   unsigned  int yy;
+}c;
+
+int main() {
+    int t_dd,t_mm,t_yy;
+    printf("%d\n",sizeof(c));//---->4 Bytes
+
+  printf("Enter DD:MM:YY :");
+  scanf("%d%d%d",&t_dd,&t_mm,&t_yy);
+  
+  if(t_dd<1 || t_dd>31 || t_mm<1|| t_mm>12 || t_yy<1|| t_yy>4294967295)
+  {
+      printf("Invalid");
+  }
+  c.dd=t_dd;
+  c.mm=t_mm;
+  c.yy=t_yy;
+  printf("%d:%d:%d",c.dd,c.mm,c.yy);
+
+    return 0;
+}
+
+

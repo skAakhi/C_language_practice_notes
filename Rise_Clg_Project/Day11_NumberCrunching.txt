@@ -1,0 +1,197 @@
+1.Occurance of particular digit .
+
+
+2.GCD .
+
+
+3.Palindrome or Not .
+
+
+4.Checking the digit power of (2) or Not 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+1.
+#include<stdio.h>
+
+int main()
+{
+    int num,target,count=0,rem=0;
+    scanf("%d",&num);
+    scanf("%d",&target);
+    
+    
+    while(num!=0)
+    {
+        rem=num%10;
+        if(target==rem)
+        count++;
+        
+        num/=10;
+    }
+    printf("%d",count);
+}
+
+
+
+
+2.
+#include<stdio.h>
+
+int main()
+{
+    int num1,num2;
+    scanf("%d",&num1);
+    scanf("%d",&num2);
+    
+    
+    while(num1!=num2)
+    {
+        if(num1>num2)
+        {
+            num1-=num2;
+        }
+        else{
+            num2-=num1;
+        }
+    }
+    printf("%d",num2);
+}
+
+
+
+
+3.
+#include<stdio.h>
+
+int main()
+{
+    int num1,rev=0,temp=0,rem=0;
+    scanf("%d",&num1);
+    //scanf("%d",&num2);
+    temp=num1;
+    
+    
+    while(num1!=0)
+    {
+        rem=num1%10;
+        rev=rev*10+rem;
+        num1/=10;
+       
+    }
+    if(rev==temp)
+    printf("Palindrome");
+    else
+    printf("Not a palindrome");
+}
+
+
+
+
+
+
+4.
+
+First way :
+#include<stdio.h>
+
+int main()
+{
+    int num1,rev=0,temp=0,rem=0;
+    scanf("%d",&num1);
+    //scanf("%d",&num2);
+    temp=num1;
+    
+    
+    while(num1>1)
+    {
+         if((num1&1)==0)
+         num1/=2;
+         else
+         break;
+       
+    }
+    if(num1==1)
+    printf("Perfect number or power of 2");
+    else
+    printf("Not a perfect number or not a power of 2");
+    
+}
+
+
+
+second way:
+
+#include<stdio.h>
+
+int main()
+{
+    int num1,rev=0,temp=0,rem=0;
+    scanf("%d",&num1);
+    //scanf("%d",&num2);
+    temp=num1;
+    
+    
+    while(num1>1)
+    {
+         if((num1&1)==0)
+         num1>>=1;
+         else
+         break;
+       
+    }
+    if(num1==1)
+    printf("Perfect number or power of 2");
+    else
+    printf("Not a perfect number or not a power of 2");
+    
+}
+
+
+
+
+Third way [Efficient way ]:
+
+#include<stdio.h>
+
+int main()
+{
+    int num1,rev=0,temp=0,rem=0;
+    scanf("%d",&num1);
+    if((num1&num1-1)==0)
+    printf("Perfect number or power of 2");
+    else
+    printf("Not a perfect number or not power of 2");
+    
+}

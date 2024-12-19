@@ -1,0 +1,339 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+//0 - 50    [0.50]
+//51 - 100   100+ [0.75]
+//101 - 200  200+[1.0]
+//201 - 300  300+[1.5]
+//For every bill charge 0.20[surge charge]
+int main() {
+    int units;
+    float amt,sur_charge;
+    
+    scanf("%d",&units);
+    if(units<=50)
+    amt=units*0.50;
+    else if(units>=51 && units<=100)
+    amt=100+(units-50)*0.75;
+    else if(units>=101 && units<=200)
+    amt=200+(units-100)*1.0;
+    else
+    amt=300+(units-200)*1.5;
+    
+    printf("%.3f\n",amt);
+    //amt=amt0.20;
+    printf("%.3f",amt);
+    
+    
+
+    return 0;
+}
+
+
+
+
+2.Quadratic equation
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<math.h>
+int main() {
+int a,b,c,d;
+float r1,r2;
+scanf("%d%d%d",&a,&b,&c);
+d=pow(b,2)-(4*a*c);
+
+if(d>0)
+{
+    r1=(-b+sqrt(d))/(2*a);
+    r2=(-b-sqrt(d))/(2*a);
+    printf("%.1f %.1f",r1,r2);
+    
+}
+else if(d==0)
+{
+    r1=r2=-b/(2*a);
+    printf("%.1f %.1f",r1,r2);
+}
+else
+{
+    printf("Roots are imaginary");
+}
+    
+    
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///????????????????????
+#include <stdio.h>
+//637+20+50+10+25+43+62
+int main() {
+    int units;
+    float totalBill = 0;
+    
+    // Enter the number of units consumed
+    printf("Enter the number of units consumed: ");
+    scanf("%d", &units);
+
+    // Calculating the bill based on slabs
+    if (units > 125) {
+        totalBill += (units - 125) * 6.37;  // For units above 125
+        units = 125;
+    }
+    else if (units > 75) {
+        totalBill += (units - 75) * 4.50;   // For units between 76 and 125
+        units = 75;
+    }
+   else  if (units > 30) {
+        totalBill += (units - 30) * 3.00;   // For units between 31 and 75
+        units = 30;
+    }
+    totalBill += units * 1.90;              // For units between 0 and 30
+
+    // Add Rs. 10 per kilowatt of power consumed
+    totalBill += 10;
+
+    // Output the total bill
+    printf("The total electricity bill is: Rs. %.2f\n", totalBill);
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+
+int main() {
+    int units;
+    float totalBill = 0;
+    
+    // Enter the number of units consumed
+    printf("Enter the number of units consumed: ");
+    scanf("%d", &units);
+
+    // Calculating the bill based on slabs using else-if ladder
+    if (units <= 30) {
+        totalBill = units * 1.90;
+    } 
+    else if (units <= 75) {
+        totalBill = (30 * 1.90) + (units - 30) * 3.00;
+    } 
+    else if (units <= 125) {
+        totalBill = (30 * 1.90) + (45 * 3.00) + (units - 75) * 4.50;
+    } 
+    else { // units > 125
+        totalBill = (30 * 1.90) + (45 * 3.00) + (50 * 4.50) + (units - 125) * 6.37;
+    }
+
+    // Add Rs. 10 per kilowatt of power consumed
+    totalBill += 10;
+
+    // Output the total bill
+    printf("The total electricity bill is: Rs. %.2f\n", totalBill);
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    
+    int n,fact=1;
+    scanf("%d",&n);
+    for(int i=1;i<=n;i++)
+    fact*=i;
+    
+    printf("%d",fact);
+    return 0;
+}
+
+
+
+
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    
+    int n,flag=0;
+    scanf("%d",&n);
+    for(int i=2;i<=n/2;i++)
+    {
+        if(n%i==0){
+        flag=1;
+        break;
+        }
+    }
+     if(flag==1)
+     printf("Not a prime number");
+     else 
+     printf("Prime number");
+    
+    return 0;
+}
+
+
+
+
+
+
+
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    
+    int n,flag=0,rev=0,rem=0;
+    int safe;
+    scanf("%d",&n);
+    safe=n;
+    
+    while(n!=0)
+    {
+        rem=n%10;
+        rev=(rev*10)+rem;
+        n/=10;
+    }
+    if(rev==safe)
+    printf("Palindrome");
+    else
+    printf("Not a palindrome");
+    
+    return 0;
+}
+
+
+
+
+//Pascal Triangle
+
+#include <stdio.h>
+
+int main() {
+    int n, coef = 1;
+
+    // Input the number of rows
+    printf("Enter the number of rows: ");
+    scanf("%d", &n);
+
+    // Loop through each row
+    for (int i = 0; i < n; i++) {
+        // Print spaces for alignment
+        for (int space = 1; space <= n - i; space++) {
+            printf("  ");
+        }
+
+        // Calculate and print the values in Pascal's Triangle
+        for (int j = 0; j <= i; j++) {
+            // Calculate binomial coefficient using nCk = n! / (k! * (n-k)!)
+            if (j == 0 || i == 0) {
+                coef = 1;
+            } else {
+                coef = coef * (i - j + 1) / j;
+            }
+            printf("%4d", coef);  // Print the coefficient
+        }
+
+        printf("\n");
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Pyramid of numbers 
+
+
+//Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    for(int i=1;i<=5;i++)
+    {
+        for(int j=1;j<=5-i;j++)
+        {
+            printf("  ");
+        }
+        for(int j=1;j<=2*i-1;j++)
+        {
+            printf("%d ",j);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+// #include <stdio.h>
+
+// int main() {
+//     for(int i=1;i<=5;i++)
+//     {
+//         for(int j=1;j<=5-i;j++)
+//         {
+//             printf(" ");
+//         }
+//         for(int j=1;j<=i;j++)
+//         {
+//             printf("%d ",j);
+//         }
+//         printf("\n");
+//     }
+
+//     return 0;
+// }
+
+

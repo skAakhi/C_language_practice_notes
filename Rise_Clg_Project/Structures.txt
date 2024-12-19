@@ -1,0 +1,451 @@
+
+
+
+STRUCTURES:
+
+
+
+
+
+
+1.Initialization of values at compile_time:
+
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+
+struct student{
+    int id;
+    char name[20];
+    float marks;
+};
+
+int main() {
+    struct student s={101,"Aakhib",89};
+    
+    printf("%d %s %f",s.id,s.name,s.marks);
+
+    return 0;
+}
+
+
+
+
+1.1
+#include <stdio.h>
+
+struct student{
+    int id;
+    char name[20];
+    float marks;
+}s={101,"Aakhib",89};;
+
+int main() {
+    
+    printf("%d %s %f",s.id,s.name,s.marks);
+
+    return 0;
+}
+
+
+
+
+
+2.Using dot(.) operator initializing values at compile_time
+[Note: we cannot assign a string directly to s.name using assignment(=) operator so to insert it indirectly should use strcpy()]
+
+2.
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<string.h>
+struct student{
+    int id;
+    char name[20];
+    float marks;
+};
+
+int main() {
+    struct student s={s.marks=87,s.id=101};
+    strcpy(s.name,"Aakhib");
+    
+    printf("%d %s %f",s.id,s.name,s.marks);
+
+    return 0;
+}
+
+
+
+
+2.1 Assign it individually neigther at a time 
+2.1
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<string.h>
+struct student{
+    int id;
+    char name[20];
+    float marks;
+};
+
+int main() {
+    struct student s;
+    s.id=101;
+    s.marks=95;
+    strcpy(s.name,"Aakhib");
+    
+    printf("%d %s %f",s.id,s.name,s.marks);
+
+    return 0;
+}
+
+
+
+
+2.2.Creating object at another side
+2.2
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<string.h>
+struct student{
+    int id;
+    char name[20];
+    float marks;
+}s;
+
+//struct student s;
+int main() {
+    
+    s.id=101;
+    s.marks=95;
+    strcpy(s.name,"Aakhib");
+    
+    printf("%d %s %f",s.id,s.name,s.marks);
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+3.Runtime initialization 
+
+3.
+#include <stdio.h>
+
+struct student{
+    int id;
+    char name[20];
+    float marks;
+}s;
+//struct student s;
+
+int main() {
+    //struct student s;
+
+    printf("Enter your Id:name:marks: ");
+    scanf("%d%s%f",&s.id,s.name,&s.marks);
+    
+    printf("%d %s %f",s.id,s.name,s.marks);
+
+    return 0;
+}
+
+
+
+
+3.1 Copying [sending value of (s) object into (s1) object, so therby (s,s1) object are pointing to same block of memory]
+3.1
+#include <stdio.h>
+
+struct student{
+    int id;
+    char name[20];
+    float marks;
+}s,s1;
+//struct student s,s1;
+
+int main() {
+   // struct student s,s1;
+    printf("Enter your Id:name:marks: ");
+    scanf("%d%s%f",&s.id,s.name,&s.marks);
+    s1=s;
+    
+    printf("%d %s %f\n",s.id,s.name,s.marks);
+    printf("%d %s %f",s1.id,s1.name,s1.marks);
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+Arrays of structures:
+
+
+
+4.
+#include <stdio.h>
+
+struct student{
+    int id;
+    char name[20];
+    float marks;
+}s[3];
+//struct student s[3];
+
+int main() {
+    //struct student s[3];
+    for(int i=0;i<3;i++)
+    {
+    printf("Enter your Id:name:marks:%d:",i);
+    scanf("%d%s%f",&s[i].id,s[i].name,&s[i].marks);
+    }
+    for(int i=0;i<3;i++)
+    {
+    printf("%d %s %f\n",s[i].id,s[i].name,s[i].marks);
+    }
+
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+4.1.Indirectly you can find the size of your (s) object using sizeof operator:
+4.1
+#include <stdio.h>
+
+struct student{
+    int id;
+    char name[20];
+    float marks;
+};
+//struct student s[3];
+
+int main() {
+    struct student s[3];
+    int size=sizeof(s)/sizeof(s[0]);
+    for(int i=0;i<size;i++)
+    {
+    printf("Enter your Id:name:marks:%d:",i);
+    scanf("%d%s%f",&s[i].id,s[i].name,&s[i].marks);
+    }
+    for(int i=0;i<size;i++)
+    {
+    printf("%d %s %f\n",s[i].id,s[i].name,s[i].marks);
+    }
+
+
+    return 0;
+}
+
+
+
+
+
+
+Note: You can create same structure inside of main() 
+4.2
+#include <stdio.h>
+int main() {
+    struct student{
+    int id;
+    char name[20];
+    float marks;
+};
+    struct student s[3];
+    int size=sizeof(s)/sizeof(s[0]);
+    for(int i=0;i<size;i++)
+    {
+    printf("Enter your Id:name:marks:%d:",i);
+    scanf("%d%s%f",&s[i].id,s[i].name,&s[i].marks);
+    }
+    for(int i=0;i<size;i++)
+    {
+    printf("%d %s %f\n",s[i].id,s[i].name,s[i].marks);
+    }
+    return 0;
+}
+
+
+4.3.How memory is allocating for structures outside the main() in c
+4.3
+1. Global Scope:
+When a structure is declared outside any function, it becomes a global variable. Global variables have:
+
+Static storage duration: Memory for the structure is allocated in the data segment (not the stack or heap).
+
+Lifetime: The structure exists throughout the program's execution.
+
+Default Initialization: All members are initialized to zero or NULL (for pointers) if no explicit initialization is provided.
+
+
+
+4.4 Extern Structures:
+
+You can declare a structure variable as extern to use it across multiple files. 
+However, memory is only allocated for the variable in one file, where it is defined.
+file 1:
+#include <stdio.h>
+
+struct student {
+    int id;
+    char name[20];
+    float marks;
+};
+
+struct student s = {101, "Aakhib", 87.0}; // Memory allocated here
+
+
+
+file2:
+#include <stdio.h>
+
+extern struct student s; // Use the same variable from File 1
+
+int main() {
+    printf("ID: %d\nName: %s\nMarks: %.2f\n", s.id, s.name, s.marks);
+    return 0;
+}
+
+
+Memory layout:
+
+Location of Declaration	Storage Duration	Memory Segment	Default Initialization
+Outside main (global)	Static	                  Data Segment	     Zero/NULL
+static outside main	Static	                  Data Segment	     Zero/NULL
+extern (in other file)	Depends on file	       Depends on context	N/A
+
+
+
+
+
+
+
+
+
+
+
+Pointers to structures:
+
+
+
+5.Compile time initialization
+5.
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<string.h>
+struct student{
+    int id;
+    char name[30];
+    float marks;
+}s;
+
+//struct student s;
+int main() {
+    //struct student s;
+    struct student *p=&s;
+    
+    p->id=101;
+    strcpy(p->name,"Aakhib");
+    p->marks=98.77;
+    
+    printf("%d %s %f",p->id,p->name,p->marks);
+    
+
+    return 0;
+}
+
+
+
+
+5.1 Runtime intialization
+5.1
+#include <stdio.h>
+#include<string.h>
+struct student {
+    int id;
+    char name[30];
+    float marks;
+}s;
+//struct student s;
+
+int main() {
+    // struct student  s;
+    struct student *p=&s;
+    
+   printf("Enter details id:name:marks: ");
+   scanf("%d %s %f",&p->id,p->name,&p->marks);
+    
+    printf("id=%d\nname=%s\nmarks=%f",p->id,p->name,p->marks);
+    
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+Array of pointers to array of structures:
+
+
+
+
+6.Runtime_initialization
+6.
+#include <stdio.h>
+#include<string.h>
+struct student {
+    int id;
+    char name[30];
+    float marks;
+}s[3];
+//struct student s;
+
+int main() {
+    // struct student  s;
+    
+   struct student *p[3];
+//   for(int i=0;i<3;i++)
+//   {
+//       p[i]=&s[i];
+//   }
+   for(int i=0;i<3;i++)
+   {
+    p[i]=&s[i];
+   printf("Enter details id:name:marks %d: ",i+1);
+   scanf("%d %s %f",&p[i]->id,p[i]->name,&p[i]->marks);
+   }
+   
+   
+    for(int i=0;i<3;i++) {
+    printf("Student %d details\n",i+1);
+    printf("id=%d\nname=%s\nmarks=%f\n",p[i]->id,p[i]->name,p[i]->marks);
+    printf("\n");
+    }
+    
+
+    return 0;
+}

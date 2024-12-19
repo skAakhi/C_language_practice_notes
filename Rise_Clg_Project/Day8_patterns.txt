@@ -1,0 +1,502 @@
+1.
+Print the following pattern
+Example:
+5
+*****
+*****
+*****
+*****
+*****
+
+
+
+6
+
+******
+
+******
+
+******
+
+******
+
+******
+
+******
+
+
+
+2.
+Print the following pattern
+Example:
+5
+*
+**
+***
+****
+*****
+
+6
+*
+**
+***
+****
+*****
+
+****** 
+
+
+
+
+3.
+Print the following pattern
+Example:
+4
+
+###*
+
+##***
+
+#*****
+
+*******
+
+5
+####*
+###***
+##*****
+#*******
+*********
+
+In the above, spaces are indicated with hash(#) to have a clarity on count of spaces.
+
+NOTE:
+
+While coding don't print hash, do print space itself.
+
+
+
+
+4.
+Print the following pattern
+Example:
+5
+*********
+#*******
+##*****
+###***
+####*
+
+
+
+4
+
+*******
+#*****
+##***
+###*
+
+In the above, spaces are indicated with hash(#) to have a clarity on count of spaces.
+
+NOTE:
+
+While coding don't print hash, do print space itself.
+
+
+
+
+
+5.
+Print the following pattern
+Example:
+5
+####*****
+###*****
+##*****
+#*****
+*****
+
+4
+
+###****
+##****
+#****
+****
+
+In the above, spaces are indicated with hash(#) to have a clarity on count of spaces.
+
+NOTE:
+
+While coding don't print hash, do print space itself.
+
+
+
+
+6.
+Print the Following Star Pattern
+EXAMPLE:
+
+5
+
+*
+
+**
+
+***
+
+****
+
+*****
+
+*****
+
+****
+
+***
+
+**
+
+* 
+
+
+
+
+
+
+
+7.
+Print the following pattern
+Example:
+5
+*****
+
+*###*
+*###*
+*###*
+*****
+
+7
+
+*******
+
+*#####*
+
+*#####*
+
+*#####*
+
+*#####*
+
+*#####*
+
+*******
+
+In the above, spaces are indicated with hash(#) to have a clarity on count of spaces.
+
+NOTE:
+
+While coding don't print hash, do print space itself.
+
+
+
+
+
+8.
+Print the following pattern
+Example:
+
+3
+
+*###*
+
+#*#*#
+
+##*##
+
+#*#*#
+
+*###*
+
+5
+*#######*
+#*#####*#
+##*###*##
+###*#*###
+####*####
+###*#*###
+##*###*##
+#*#####*#
+*#######*
+
+
+
+
+
+9.
+i/p: 5
+
+o/p:
+
+*********
+**     **
+* *   * *
+*  * *  *
+*   *   *
+*  * *  *
+* *   * *
+**     **
+*********
+
+
+
+
+
+10.
+
+i/p:5
+
+o/p:
+  *  
+  *  
+*****
+  *  
+  *  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+1.
+#include<stdio.h>
+int main()
+{
+    int num,row=1,col;
+    scanf("%d",&num);
+    for(;row<=num;row++,printf("\n"))
+    for(col=1;col<=num;printf("*"),col++);
+    return 0;
+}
+
+
+
+2.
+#include<stdio.h>
+int main()
+{
+    int num,row=1,col;
+    scanf("%d",&num);
+    for(;row<=num;row++,printf("\n"))
+    for(col=1;col<=row;printf("*"),col++);
+    return 0;
+}
+
+
+
+
+3.
+#include<stdio.h>
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    for(int i=1;i<=n;i++,printf("\n"))
+    {
+        for(int j=i;j<n;j++)
+        {
+           printf("#");
+        }
+    
+    for(int j=1;j<=(i*2)-1;j++)
+    {
+        printf("*");
+    }
+    }
+}
+
+
+
+4.
+#include<stdio.h>
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    for(int i=n;i>=1;i--,printf("\n"))
+    {
+        for(int j=i;j<n;j++)
+        {
+           printf("#");
+        }
+    
+    for(int j=1;j<=(i*2)-1;j++)
+    {
+        printf("*");
+    }
+    }
+}
+
+
+
+
+5.
+#include<stdio.h>
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    for(int i=1;i<=n;i++,printf("\n"))
+    {
+        for(int j=i;j<n;j++)
+        {
+           printf("#");
+        }
+    
+    for(int j=1;j<=n;j++)
+    {
+        printf("*");
+    }
+    }
+}
+
+
+
+
+6.
+#include<stdio.h>
+int main()
+{
+int num,row,col;
+scanf("%d",&num);
+for(row=1;row<=num;row++,printf("\n"))
+{
+for(col=1;col<=row;col++)
+printf("*");
+}
+for(row=num;row>=1;row--,printf("\n"))
+{
+for(col=1;col<=row;col++)
+printf("*");
+}
+return 0;
+}
+
+
+
+
+7.
+#include<stdio.h>
+int main()
+{
+int n,row,col;
+scanf("%d",&n);
+for(row=1;row<=n;row++,printf("\n"))
+{
+for(col=1;col<=n;col++)
+{
+if(row==1||row==n||col==1||col==n)
+printf("*");
+else
+printf(" ");
+}
+}
+return 0;
+}
+
+
+
+
+8.
+#include<stdio.h>
+int main() {
+int n,row,col;
+scanf("%d",&n);
+n=n*2-1;
+for(row=1;row<=n;row++,printf("\n"))
+{
+for(col=1;col<=n;col++)
+{
+if(col==row||col==(n-row+1))
+printf("*");
+else
+printf("#");
+}
+}
+return 0;
+}
+
+
+
+
+9.
+#include<stdio.h>
+int main()
+{
+int n,row,col;
+scanf("%d",&n);
+n=n*2-1;
+for(row=1;row<=n;row++,printf("\n"))
+{
+for(col=1;col<=n;col++)
+{
+if(row==1||row==n||col==1||col==n||row==col||col==(n-row+1))
+printf("*");
+else
+printf(" ");
+}
+}
+return 0;
+}
+
+
+
+
+
+
+10.
+#include<stdio.h>
+int main()
+{
+int num,row,col;
+scanf("%d",&num);
+for(row=1;row<=num;row++,printf("\n"))
+{
+ for(col=1;col<=num;col++)
+ {
+ if(row==num/2+1||col==num/2+1)
+ printf("*");
+ else
+ printf(" ");
+ }
+}
+return 0;
+}
+

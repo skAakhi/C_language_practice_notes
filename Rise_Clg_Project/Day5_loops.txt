@@ -1,0 +1,156 @@
+1.Given an input value, count the number of trailing zeros in the factorial of the given number.
+
+
+2.Given a N,Write a program to generate a series of N values that has 2 and 3 powers alternatively
+
+
+3.For the given N , generate a N values of a series where the odd terms are multiples of 2 and even terms are obtained by dividing previous term by 2.
+
+
+4.Check whether given number is Pentagonal number
+A Pentagonal number is a number that can be represented using a regular geometric pattern typically formed using dots that are regularly spaced. A pentagonal number takes the form of a pentagon.
+The first 6 pentagonal numbers are:
+1, 5, 12, 22, 35, 51,.etc
+
+
+5.k.\\nProth number series goes like this: 3, 5, 9, 13, 17, 25, 33, 41, 49, 57, 65, .."}">Check whether given number is Proth number.
+If a number can be expressed in the form of kX2^n + 1, it's called a proth number, where k and n are positive integers and 2^n > k.
+Proth number series goes like this: 3, 5, 9, 13, 17, 25, 33, 41, 49, 57, 65, ..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+1.
+#include<stdio.h>
+
+int main(){
+    
+    long long int num,zero=0;
+    scanf(""%lld"",&num);
+    
+    while (num > 0) {
+        zero += num / 5;
+         num /= 5;
+    }
+    printf(""%lld"",zero);
+    return 0;
+}
+
+
+
+2.
+"#include<stdio.h>
+int main()
+{
+ long long int N,num,two=1,three=1;
+ scanf(""%lld"",&N);
+ for(num=1;num<=N;num=num+2)
+ {
+ printf(""%lld "",two);
+ two=two*2;
+ if(num+1<=N)
+ printf(""%lld "",three);
+ three=three*3;
+ }
+ return 0;
+}
+
+
+3.
+"#include<stdio.h>
+int main()
+{
+ long long int number,N;
+ scanf(""%lld"",&N);
+ for(number=1;number<=N;number++)
+ {
+ if(number%2==0)
+ printf(""%lld "",number/2-1);
+ else
+ printf(""%lld "",number-1);
+ }
+ return 0;
+}
+
+
+
+4.
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+
+int num,var1,power,var2;
+scanf("%d",&num);
+if(num==1||num==5)
+printf("Pentagonal Number");
+else
+{
+for(var1=4,var2=5;var2<num;var1+=3,var2+=var1);
+if(var2==num)
+printf("Pentagonal Number");
+else
+printf("Not a Pentagonal Number");
+}
+return 0;
+}
+
+
+
+
+5.
+#include <stdio.h>
+#include<math.h>
+int main()
+{
+int num,power;
+scanf("%d",&num);
+power=1;
+num=num-1;
+while(num%2==0)
+{
+num=num/2;
+power=power*2;
+}
+if(num<power)
+printf("Proth Number");
+else
+printf("Not a Proth Number");
+return 0;
+}

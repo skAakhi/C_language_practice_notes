@@ -1,0 +1,351 @@
+1.Given a number, check whether it is "Odd" or "Even"
+
+2.Given a number, check whether it is "Odd" or "Even" without using (%) mod operator
+
+3.Given an integer value, check the given input is divisible by 3. If it is divisible print the message "The number is divisible by 3".if it is not divisible print the message "The number is not divisible by 3 and gives a remainder _".
+
+4.Given an integer value, if it is divisible by 3 print “HI”, if it is divisible by 5 print “HELLO”. If it is divisible by both print “HIHELLO”, else  print "NONE"
+
+-------------------------------------------------------------------------------------------------
+
+1.Get a 2 input from a user, first one for count of step and 2nd one for direction(only right and left). Find the position after moving by left or right by the specified number of steps
+
+2.Given a year, check whether the given year is leap year or not
+
+3.Write a program to print corresponding day based on given input with using if conditions and without using if conditions.
+
+4.Check whether the given character is in upper case or lower case or none with using if conditions and without using if conditions.
+
+4.1.Take a input from the user(string),If lowercase convert it into uppercase otherwise uppercase.
+
+5.Given basic Salary of an employee,calculate its gross salary according to the following condition:
+
+ Basic Salary <= 10000 : HRA = 20%, DA=80% 
+
+Basic Salary <= 20000 : HRA = 25%, DA=90% 
+
+Basic Salary > 20000 : HRA = 30%, DA=95%
+
+
+6.Based on the given mark, print the corresponding grade according to the following conditions :
+
+Grade  A.   marks>=91     
+
+Grade B  76<=marks<=90        
+
+Grade C   61<=marks<=75       
+
+Grade D  marks<=60   without using if conditions 
+
+
+
+7.Given electricity unit charge,calculate the total electricity bill according to the given condition: 
+
+For First 50 Units Rs.0.50/unit 
+
+For next 100 Units Rs.0.75/unit 
+
+For next 150 Units Rs.1.20/unit 
+
+For unit above 250 Rs.1.50/unit
+
+An additional surcharge of 20% is added to the bill.
+
+
+-----------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+1.
+#include<stdio.h>
+int main()
+{
+long long int num;
+scanf("%lld",&num);
+if(num%2==0)
+{
+printf("EVEN");
+}
+else
+{
+printf("ODD");
+}
+return 0;
+}
+
+
+
+
+2.
+#include<stdio.h>
+int main()
+{
+long long int num;
+scanf("%lld",&num);
+if((num&1)==0)
+{
+printf("even");
+}
+else
+{
+printf("odd");
+}
+return 0;
+}
+
+
+3.
+#include<stdio.h>
+int main()
+{
+long long int num;
+scanf("%lld",&num);
+if(num%3==0)
+{
+printf("The number is divisible by 3");
+}
+else
+{
+printf("The number is not divisible by 3 and gives a remainder %d",(num%3));
+}
+return 0;
+}
+
+
+4.
+#include<stdio.h>
+int main()
+{
+  long long int num;
+  scanf("%lld",&num);
+  if(num%3==0 && num%5==0)
+    printf("HIHELLO"); 
+  else if(num%3==0)
+    printf("HI");
+  else if(num%5==0)
+    printf("HELLO");
+ else
+  printf("NONE");
+  return 0;
+}
+
+
+5.
+#include<stdio.h>
+int main()
+{
+ long long int x=0,y=0,step;
+ char dir;
+ scanf("%lld %c",&step,&dir);
+ if(dir=='R')
+ x=x+step;
+ else
+ x=x-step;
+ printf("(%lld,%lld)",x,y);
+return 0;
+}
+
+6.
+#include<stdio.h>
+int main()
+{
+  int year;
+  scanf("%d",&year);
+  if((year%4==0 && year%100!=0)||(year%400==0))
+    printf("Leap year"); 
+  else 
+    printf("Not a Leap year");
+return  0;
+}
+
+7.
+#include<stdio.h>
+int main(){
+    long long int day;
+    scanf("%lld",&day);
+    switch(day)
+    {
+        case 0 : printf("Sunday"); break;
+        case 1 : printf("Monday"); break;
+        case 2 : printf("Tuesday"); break;
+        case 3 : printf("Wednesday"); break;
+        case 4 : printf("Thursday"); break;
+        case 5 : printf("Friday"); break;
+        case 6 : printf("Saturday"); break;
+        default : printf("Invalid");
+    }
+}
+
+
+8.0
+
+/*#include<stdio.h>
+int main()
+{
+char letter;
+scanf("%c",&letter);
+if(letter>=97&&letter<=122)
+printf("LOWERCASE");
+else if(letter>=65&&letter<=90)
+printf("UPPERCASE");
+else
+ printf("NONE");
+
+return 0;
+}*/
+
+8.0.1
+#include<stdio.h>
+int main()
+{
+char letter[20];
+scanf("%s",letter);
+for(int i=0;letter[i]!='\0';i++)
+{
+if(letter[i]>=97&&letter[i]<=122)
+{
+printf("%c",letter[i]-32);
+}
+else if(letter[i]>=65&&letter[i]<=90)
+{
+printf("%c",letter[i]+32);
+}
+else
+{
+ printf("NONE");
+}
+}
+
+return 0;
+}
+
+
+8.1.0
+
+#include<stdio.h>
+int main(){
+    char letter;
+    scanf("%c",&letter);
+    switch(letter)
+    {
+        case 'A'...'Z' : printf("UPPER CASE"); break;
+        case 'a'...'z' : printf("LOWER CASE"); break;
+        default : printf("Invalid");
+    }
+}
+
+
+8.1.1
+#include<stdio.h>
+int main(){
+    char letter[100];
+    scanf("%s",letter);
+    for(int i=0;letter[i]!='\0';i++)
+    {
+    switch(letter[i])
+    {
+        case 'A'...'Z' : printf("%c",letter[i]+32); break;
+        case 'a'...'z' : printf("%c",letter[i]-32); break;
+        default : printf("Invalid");
+    }
+    }
+}
+
+ 
+
+9.
+#include<stdio.h>
+int main()
+{
+int num;
+double ans;
+scanf("%d",&num);
+if(num<=10000)
+{
+ans=num+(num*0.2+num*0.8);
+}
+else if(num<=20000)
+{
+ans=num+(num*0.25)+(num*0.9);
+}
+else
+{
+ans=num+(num*0.3)+(num*0.95);
+}
+printf("Rs.%.2lf",ans);
+return 0;
+}   
+
+
+
+10.0
+#include<stdio.h>
+int main(){
+   int m;
+   scanf("%d",&m);
+   if(m>=91)
+   printf("Grade A");
+   else if(m>=76 && m<=90)
+   printf("Grade B");
+   else if(m>=61 && m<=75)
+   printf("Grade C");
+   else
+   printf("Grade D");
+}
+
+
+
+10.1
+
+#include<stdio.h>
+int main(){
+    int mark;
+    scanf("%d",&mark);
+    switch(mark){
+        case 91 ...100 : printf("Grade A"); break;
+        case 76 ...90 : printf("Grade B"); break;
+        case 61 ...75 : printf("Grade C"); break;
+        case 0 ...60 : printf("Grade D"); break;
+        default : break;
+    }
+    return 0;
+} 
+
+
+11.
+#include<stdio.h>
+int main()
+{
+int number;
+double ans;
+scanf("%d",&number);
+if(number>250)
+{
+ans=(50*0.50)+(100*0.75)+(100*1.20)+(number-250)*1.50;
+}
+else if(number>150)
+{
+ans=(50*0.50)+(100*0.75)+(number-150)*1.20;
+}
+else if(number>50)
+{
+ans=(50*0.50)+(number-50)*0.75;
+}
+else{
+
+ans=number*0.5;
+}
+ans=ans+(ans*0.2);
+printf("%.2lf",ans);
+return 0;
+}
+
+
+

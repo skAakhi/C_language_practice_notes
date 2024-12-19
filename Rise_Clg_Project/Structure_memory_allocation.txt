@@ -1,0 +1,53 @@
+1. Static or Global Structures
+
+Segment: Data Segment
+If a structure is declared as static or is a global variable, its memory is allocated in the data segment.
+The data segment contains:
+Initialized data: For structures with explicitly initialized values.
+Uninitialized data (BSS): For structures that are not explicitly initialized.
+
+Example:
+c
+Copy code
+struct MyStruct {
+    int a;
+    char b;
+};
+
+struct MyStruct globalStruct;  // Allocated in the BSS segment (uninitialized).
+static struct MyStruct staticStruct = {10, 'A'};  // Allocated in the initialized data segment.
+
+
+
+2. Local Structures
+Segment: Stack
+If a structure is declared inside a function (as a local variable), its memory is allocated on the stack.
+Memory is automatically allocated when the function is called and deallocated when the function exits.
+
+Example:
+c
+Copy code
+void myFunction() {
+    struct MyStruct localStruct;  // Allocated on the stack.
+}
+
+
+
+3. Dynamically Allocated Structures
+
+Segment: Heap
+If a structure is allocated using dynamic memory allocation (malloc, calloc, realloc), its memory resides in the heap.
+You must manually manage the memory using free().
+
+Example:
+c
+Copy code
+struct MyStruct* ptr = (struct MyStruct*)malloc(sizeof(struct MyStruct));  // Allocated on the heap.
+free(ptr);  // Free the allocated memory.
+
+
+Summary of Memory Segments
+Type of Allocation	        Segment	Scope
+Static/Global Structures	Data Segment	Whole program lifecycle
+Local Structures	Stack	Function scope
+Dynamically Allocated	Heap	Manual management (via malloc)

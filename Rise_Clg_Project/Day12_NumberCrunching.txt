@@ -1,0 +1,280 @@
+1.Count the number of digits in a given number 
+
+
+2.Print the digits of a given number from right to left
+
+
+3.Find the product of the digits in a given number
+
+
+4.Count the number of occurrences of a digit in a given number
+
+
+5.Find whether the given number is Harshad Number or Not
+
+Harshad Number : if the number is divisible by sum of digits of the number.
+
+
+
+6.Check whether product of digits at even places it divisible by sum of digits at odd places
+
+
+7.Given a number, find the greatest digit in the number
+
+
+
+8.Print all the prime digits in a given number
+
+
+9.Given a number,  check whether  the digit from a given number divides the number completely or not. If any digit divides the given number then print the digit and stop the process if not print -1. NOTE : Digits order starts from left to rigit.
+
+
+10.Given a number, take each digit from left to right and print whether it is Odd or Even.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------
+1.
+#include <stdio.h>
+int main() {
+    long long int count=0,temp;
+    scanf("%lld",&temp);
+    while(temp!=0){
+        count++;
+        temp/=10;
+    }
+    printf("%lld",count);
+    return 0;
+}
+
+
+
+2.
+#include <stdio.h>
+int main() {
+    long long int temp;
+    scanf("%lld",&temp);
+    while(temp!=0){
+        printf("%lld ",temp%10);
+        temp/=10;
+    }
+    return 0;
+}
+
+
+
+
+3.
+#include <stdio.h>
+int main() {
+    long long int ans=1,temp;
+    scanf("%lld",&temp);
+    while(temp!=0){
+        ans*=temp%10;
+        temp/=10;
+    }
+    printf("%lld",ans);
+    return 0;
+}
+
+
+
+
+4.
+#include <stdio.h>
+int main() {
+    long long int count=0,temp,num;
+    scanf("%lld %lld",&temp,&num);
+    while(temp!=0){
+        if((temp%10)==num)
+        count++;
+        temp/=10;
+    }
+    printf("%lld",count);
+   return 0;
+}
+
+
+
+5.
+#include <stdio.h>
+int main()
+{
+    int num,copy,sod=0;
+    scanf("%d",&num);
+    copy=num;
+    while(num!=0)
+    {
+    sod=num%10+sod;
+    num=num/10;
+    }
+   num=copy;
+   if(num%sod==0)
+   printf("Yes");
+   else
+   printf("No");
+  return 0;
+}
+
+
+
+
+6.
+#include<stdio.h> 
+    int isDivisible(long long int num) 
+    { 
+        long long int digit ,   power = 1,prod = 1, sum = 0;
+        while(num / power) {
+            digit = (num / power) % 100;
+            sum += digit % 10;
+            if(digit >= 10){
+                prod *= (digit / 10);
+            }
+            power *= 100;
+        }
+        return (prod % sum == 0) ? 1 : 0; 
+        
+    } 
+    int main() { 
+        long long int num ;
+        scanf("%lld" , &num);
+        if( isDivisible(num))
+        printf("YES");
+        else 
+        printf("NO");
+        return 0;
+    }
+
+
+
+
+
+
+
+7.
+#include<stdio.h>
+int main()
+{
+long long int num,max=0,digit;
+ scanf("%lld",&num);
+ while(num)
+ {
+ digit=num%10;
+ if(digit>max)
+ max=digit;
+ num/=10;
+ }
+printf("%lld",max);
+ return 0;
+}
+
+
+
+
+
+8.
+#include <stdio.h>
+int main() {
+    long long int ans=0,input,dig;
+    scanf("%lld",&input);
+    while(input!=0)
+    {
+       dig=input%10;
+       ans=ans*10+dig;
+       input=input/10;
+    
+    }
+    while(ans!=0)
+    {
+       dig=ans%10;
+       if(dig==2||dig==3||dig==5||dig==7)
+         printf("%lld ",dig);
+      ans=ans/10;
+    
+    }
+}
+
+
+
+
+9.
+#include<stdio.h>
+
+int main(){
+    long long int num,rev=0,flag=0,rem;
+    scanf("%lld",&num);
+    long long int temp=num;
+    while(temp!=0){
+        rev = rev*10 + temp%10;
+        temp/=10;
+    }
+    while(rev!=0){
+        rem = rev%10;
+        if(num%rem==0){
+            printf("%lld",rem); flag=1;
+            break;
+        }
+        rev/=10;
+    }
+    
+    if(flag==0){
+        printf("-1");
+    }
+    return 0;
+}
+
+
+
+
+
+10.
+#include<stdio.h>
+int main()
+{
+long long int num,power=1,digit;
+ scanf("%lld",&num);
+ while(num/power)
+ power*=10;
+power/=10;
+ while(power)
+ {
+ digit=(num/power)%10;
+ if(digit%2)
+ printf("%lld-Odd\n",digit);
+ else
+ printf("%lld-Even\n",digit);
+ power/=10;
+ }
+return 0;
+}

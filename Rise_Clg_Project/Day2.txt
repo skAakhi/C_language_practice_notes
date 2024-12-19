@@ -1,0 +1,272 @@
+1.Check whether a triangle is Equilateral or Isosceles or Scalene based on its side
+
+2.Input all angles of a Triangle and check whether it is "Valid" or "Not Valid"
+
+3.Find the minimum of 3 numbers 
+
+4.Find maximum of 3 numbers
+
+5.Find the largest of 4 numbers
+
+6.Given 3 integer values, arrange those 3 values in ascending order using  macros
+
+7.Arrange the given 4  numbers in descending order
+
+8.Write a program to read the choice and print respective min and max values of the data types that is given in the choice
+
+9.Write a program to check whether the given time is valid or not
+
+10.Magic Numbers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+
+1.
+#include<stdio.h>
+int main()
+{
+int side1,side2,side3;
+scanf("%d %d %d",&side1,&side2,&side3);
+if(side1==side2 && side2==side3)
+printf("Equilateral");
+else if(side1==side2 || side2==side3 || side3==side1)
+printf("Isosceles");
+else
+printf("Scalene");
+return 0;
+}
+
+
+2.
+#include<stdio.h>
+int main()
+{
+int angle1,angle2,angle3;
+scanf("%d %d %d",&angle1,&angle2,&angle3);
+if((angle1+angle2+angle3==180)&&angle1!=0&&angle2!=0&&angle3!=0)
+printf("Valid");
+else
+printf("Not Valid");
+return 0;
+}
+
+
+3.
+'#include<stdio.h>
+int main()
+{
+long long int num1,num2,num3;
+scanf("%lld %lld %lld",&num1,&num2,&num3);
+if(num1<num2 && num1<num3)
+printf("Minimum is %lld",num1);
+else if(num2<num1 && num2<num3)
+printf("Minimum is %lld",num2);
+else
+printf("Minimum is %lld",num3);
+return 0;
+}
+
+4.
+'#include<stdio.h>
+int main()
+{
+long long int num1,num2,num3;
+scanf("%lld %lld %lld",&num1,&num2,&num3);
+if(num1>num2 && num1>num3)
+printf("Maximum is %lld",num1);
+else if(num2>num1 && num2>num3)
+printf("Maximum is %lld",num2);
+else
+printf("Maximum is %lld",num3);
+return 0;
+}
+
+5.
+#include<stdio.h>
+#define max(x,y) (x)>(y)?(x):(y)
+int main()
+{
+long long int n1,n2,n3,n4,MAX;
+scanf("%lld %lld %lld %lld",&n1,&n2,&n3,&n4);
+MAX=max(max(n1,n2),max(n3,n4));
+printf("Largest is %lld",MAX);
+return 0;
+}
+
+6.
+#include<stdio.h>
+#define MAX(a,b) (a)>(b)?(a):(b)
+#define MIN(a,b) (a)<(b)?(a):(b)
+int main()
+{
+long long int num1,num2,num3;
+long long int max,min,mid;
+scanf("%lld %lld %lld",&num1,&num2,&num3);
+max=MAX(MAX(num1,num2),num3);
+min=MIN(MIN(num1,num2),num3);
+mid=num1+num2+num3-max-min;
+printf("%lld < %lld < %lld",min,mid,max);
+return 0;
+}
+
+7.
+#include<stdio.h>
+#define max(x,y) (x)>(y)?(x):(y)
+#define min(x,y) (x)<(y)?(x):(y)
+int main()
+{
+long long int n1,n2,n3,n4,max1,max2,min1,min2,temp;
+scanf("%lld %lld %lld %lld",&n1,&n2,&n3,&n4);
+max1=max(max(n1,n2),max(n3,n4));
+min1=min(min(n1,n2),min(n3,n4));
+min2=min(max(n1,n2),max(n3,n4));
+max2=max(min(n1,n2),min(n3,n4));
+if(max2<min2)
+{
+temp=max2;
+max2=min2;
+min2=temp;
+}
+printf("%lld > %lld > %lld > %lld",max1,max2,min2,min1);
+return 0;
+}
+
+8.
+#include<stdlib.h>
+#include<stdio.h>
+#include<limits.h>
+int main()
+{
+    int choice1;
+    int choice2;
+    scanf("%d%d", &choice1, &choice2);
+    if ( choice1 ==1)
+    {
+        switch( choice2)
+        {
+        case 1:
+            printf("Minimum value of signed char is %d\n",CHAR_MIN);
+            printf("Maximum value of signed char is %d",CHAR_MAX);
+            break;
+        case 2:
+            printf("Minimum value of signed short int is %d\n",SHRT_MIN);
+            printf("Maximum value of signed short int is %d",SHRT_MAX);
+            break;
+        case 3:
+            printf("Minimum value of signed short int is %d\n",INT_MIN);
+            printf("Maximum value of signed short int is %d",INT_MAX);
+            break;
+        case 4:
+            printf("Minimum value of signed long int is %ld\n",LONG_MIN);
+            printf("Maximum value of signed long int is %ld",LONG_MAX);
+            break;
+        case 5:
+            printf("Minimum value of signed long int is %lld\n",LLONG_MIN);
+            printf("Maximum value of signed long int is %lld",LLONG_MAX);
+            break;
+        }
+    }
+    else
+    {
+        switch( choice2)
+        {
+        case 1:
+            printf("Minimum value of unsigned char is %d\n",0);
+            printf("Maximum value of unsigned char is %d",UCHAR_MAX);
+            break;
+        case 2:
+            printf("Minimum value of unsigned short int is %d\n",0);
+            printf("Maximum value of unsigned short int is %d",USHRT_MAX);
+            break;
+        case 3:
+            printf("Minimum value of unsigned short int is %d\n",0);
+            printf("Maximum value of unsigned short int is %u",UINT_MAX);
+            break;
+        case 4:
+            printf("Minimum value of unsigned long int is %ld\n",0);
+            printf("Maximum value of unsigned long int is %lu",ULONG_MAX);
+            break;
+        case 5:
+            printf("Minimum value of unsigned long int is %lld\n",0);
+            printf("Maximum value of unsigned long int is %llu",ULLONG_MAX);
+            break;
+        }
+    }
+    return EXIT_SUCCESS;
+}
+
+
+
+
+9.
+#include<stdio.h>
+int main(){
+   long long int hour,minute,second;
+    scanf("%d:%d:%d",&hour,&minute,&second); 
+    if(hour>=0 && hour<24 && minute>=0 && minute<60 && second>=0 && second<60){
+        printf("Valid");
+    }
+    else{
+        printf("Not Valid");
+    }
+}
+
+
+
+
+
+
+
+
+10.
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    int n,sum=0,rem=0;
+    scanf("%d",&n);
+    
+    while(n>9)
+    {
+        while(n!=0)
+        {
+            rem=n%10;
+            sum+=rem;
+            n=n/10;
+        }
+        n=sum;
+        sum=0;
+    }
+    
+    if(n==1)
+    {
+    printf("Magic Number");    
+    }
+    else
+    {
+        printf("Not a magic number");
+    }
+    
+    return 0;
+}

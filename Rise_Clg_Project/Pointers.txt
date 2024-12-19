@@ -1,0 +1,469 @@
+POINTERS:
+
+SINGLE POINTERS:
+[Address specifier is %p, but you use %x(It does not any leading zeros) or %u or %d to print memory address]
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    int a=10,b=9;
+    int *p=&a,*q=&b;
+    printf("a=%d b=%d\n",a,b);
+    printf("a(ad)=%p\nb(ad)=%p\n",&a,&b);
+    
+    printf("p(val)=%d q(val)=%d\n",*p,*q);
+    printf("p(ad)=%p\nq(ad)=%p",p,q);
+    
+    return 0;
+}
+output:
+a=10 b=9
+a(ad)=0x7ffebd1a96fc b(ad)=0x7ffebd1a96f8
+p(val)=10 q(val)=9
+p(ad)=0x7ffebd1a96fc q(ad)=0x7ffebd1a96f8
+
+
+
+1.1
+#include <stdio.h>
+
+int main() {
+    int a=10,b=9;
+    int *p=&a,*q=&b;
+    printf("a=%d b=%d\n",a,b);
+    printf("a(ad)=%x b(ad)=%x\n",&a,&b);
+    
+    printf("p(val)=%d q(val)=%d\n",*p,*q);
+    printf("p(ad)=%x q(ad)=%x",p,q);
+    
+    return 0;
+}
+output:
+a=10 b=9
+a(ad)=ac4bb81c b(ad)=ac4bb818
+p(val)=10 q(val)=9
+p(ad)=ac4bb81c q(ad)=ac4bb818
+
+
+2.
+#include <stdio.h>
+
+int main() {
+    int a=10,b=9;
+    int *p=&a,*q=&b,*r;
+    r=(p,q);-------------------------->[r pointer variable is storing q value] 
+    printf("%d %d %d",*p,*q,*r);
+   
+  return 0;
+}
+output:
+10 9 9
+
+
+
+3.Gate questions assigning pointer variable value to other pointer variable to points towards another variable 
+[Take two examples and explain]
+
+
+
+
+
+4.
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    char *name;
+    int len;
+     name="joythi";
+    char *cpt=name;
+    
+    while(*cpt!='\0')
+    {
+        printf("%c stored at add %u\n",*cpt,cpt);
+        cpt++;
+    }
+    len=cpt-name;
+    printf("length=%d",len);
+    return 0;
+}
+output:
+j stored at add 4202500
+o stored at add 4202501
+y stored at add 4202502
+t stored at add 4202503
+h stored at add 4202504
+i stored at add 4202505
+length=6
+
+
+
+
+
+
+DOUBLE POINTERS:
+
+
+
+
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    int a=10;
+    int *p=&a;
+    int **q=&p;
+    int ***r=&q;
+    
+    printf("a=%d a(ad)=%p\n",a,&a);
+    printf("p(*)=%d p(val)=%p\n",*p,p);
+    printf("p(ad)=%p\n",&p);
+    printf("q(**)=%d q(val)=%p\n",**q,q);
+    printf("q(ad)=%p\n",&q);
+    printf("r(***)=%d r(val)=%p\n",***r,r);
+    printf("r(ad)=%p\n",&r);
+    return 0;
+}
+
+
+
+
+
+
+
+
+ARTHEMATIC POINTERS: and [Explain with subtraction pointers with one example same as like addition pointers]
+[Printing array of elements with the help of pointer variable and also with array name using (*)op]
+
+
+
+
+
+
+
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+   int a[]={1,2,-4,10,7,9,5};
+   int *p=a;
+//   printf("%d ",*p);
+//   p+=2;
+//   printf("%d ",*p);
+//   p+=1;
+//   printf("%d ",*p);
+   int len=sizeof(a)/sizeof(a[0]);
+   //printf("length=%d ",len);
+    for(int i=0;i<len;i++)
+    {
+        printf("%d ",*(p+i));
+    }
+    printf("\n");
+    for(int i=0;i<len;i++)
+    {
+        printf("%d ",*(a+i));
+    }
+    
+    return 0;
+    
+}
+
+
+
+
+
+
+
+INCREMENT/DECREMENT POINTERS:
+
+
+
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+   int a[]={1,2,-4,10,7,9,5};
+   int *p=a;
+   printf("%d ",*p);
+  // p++;
+//   printf("%d ",*p++);
+//   printf("%d ",*p);
+
+    //  printf("%d ",*++p);
+    //   printf("%d ",*p);  
+    
+    printf("%d %d ",*p++,*p++);//---------->[Right side expression would be evaluated first in prinf()]
+    printf("%d",*p);
+    //o/p:2 1 -4
+}
+
+
+
+
+
+2.
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+   int a[]={1,2,-4,10,7,9,5};
+   int *p=&a[3];
+   
+//   printf("%d ",*p--);
+//   printf("%d ",*p);
+   
+//   printf("%d ",*--p);
+//   printf("%d\n",*p);
+   
+   printf("%d %d %d",*--p,*--p,*--p);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+QUIZ:
+
+
+
+
+
+
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+   int a[]={1,2,-4,10,7,9,5};
+   int *p=a;
+   
+   printf("%d %d %d\n",*p++,*p++,*++p);
+   printf("%d\n",*p);
+   
+   //Different answer[Internally pointers value is increamented]
+//   printf("%d %d %d\n",(*p)++,(*p)++,*(++p));
+//   printf("%d\n",*p);
+   //printf("%d")
+
+}
+
+
+
+
+
+2.
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+   int a[]={1,2,-4,10,7,9,5};
+   int *p=a;
+   int *q=&a[0]+3;
+   
+   printf("%d %d %d\n",*p++,*p++,*++p);
+   printf("%d\n",*p);
+   
+   //Different answer[Internally pointers value is increamented]
+//   printf("%d %d %d\n",(*p)++,(*p)++,*(++p));
+//   printf("%d\n",*p);
+
+   printf("%d\n",*p++);
+   printf("%d\n",*p++);
+   
+  // printf("%d\n",*q);--->10
+  q--;
+  printf("%d\n",*(q+2));
+  printf("%d\n",*(q+2)-2);//---->7-2=5
+  printf("%d",*(p++-2)-1);//---->10-1=9
+   
+
+}
+
+
+
+
+
+VOID POINTERS:
+
+
+
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    int a=10;
+    float f=12.32;
+    char ch='A';
+    void *vp;
+    vp=&a;
+    // vp=&f;------------------->[Here we cannot update different address to void pointer variable(vp) simontaneously one after another , in such case will print GB value]
+    // vp=&ch;
+    printf("%d\n",*(int*)vp);
+    vp=&f;
+    printf("%f\n",*(float*)vp);
+    vp=&ch;
+    printf("%c\n",*(char*)vp);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+NULL POINTERS:
+
+
+
+
+
+
+1. 
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    int a=10;
+    int *p=NULL;//----->[You cannot dereference a null pointers]
+    
+    if(p==NULL)
+    {
+        printf("Memory allocation failed");
+    }
+    else{
+        printf("Memory allocated %d",*p);
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+DANGLING POINTER:[Even after deleting memory using free(), still pointer variable is holding cretain same memory]
+
+
+
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+    int *p=(int *)malloc(sizeof(int));
+    *p=10;
+    printf("%d\n",*p);//-------->10
+    printf("%d\n",p);//--------->21811872
+    free(p);
+    printf("%d\n",p);//---------->21811872
+    return 0;
+}
+
+
+
+
+2.
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+    int *p;
+    
+    {
+        int a=10;
+        p=&a;
+        printf("%d %d\n",a,*p);
+        printf("%x %x\n",&a,p);
+    }
+     printf("%d %x",*p,p);//----->[Still pointer p variable is holding (a) variable address 
+though (a) would be vanished when it comes out of the block,so it acting as dangling pointer at this line]
+    
+    return 0;
+}
+
+
+
+
+
+
+
+Ex.3
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <stdlib.h>
+
+int *f()
+{
+    int a=10;
+    return &a;
+}
+int main() {
+    int *p=f();
+    printf("%d",*p);
+    
+    return 0;
+}
+
+output:
+/tmp/uNq1ARbl7m.c: In function 'f':
+/tmp/uNq1ARbl7m.c:8:12: warning: function returns address of local variable [-Wreturn-local-addr]
+    8 |     return &a;
+      |            ^~
+Segmentation fault
+
+
+
+
+EX:3.1
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <stdlib.h>
+
+int *f()
+{
+   static int a=10;//------>[When we use static keyword the particular address remains constant even after f() block excecuted it wont be vanished finally]
+    return &a;
+}
+int main() {
+    int *p=f();
+    printf("%d",*p);
+    
+    return 0;
+}
+output:
+10
+
+
+
+
+
+
+
+
+
+
+
+
+
+WILD POINTERS:
+
+
+
+

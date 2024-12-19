@@ -1,0 +1,322 @@
+1.
+Given a number find the absolute difference between left most and right most digit, and repeat it for second from left and second from right, and do repeat it until middle digit is met. Find the sum of those differences and if only one middle digit is available do add it to sum.
+
+
+
+
+2.Find the frequency of each digit from the given number
+
+
+3.Check whether the given two numbers are Anagram or not. Two numbers are said to be as anagram if both numbers formed with same digits.
+
+
+4.Find whether the given number is strong number or not. The sum of factorial of each digit, is equal to the original number.
+
+
+
+5.Find whether the given number is armstrong or not. The number of its digit raised to the sum of power of individual digits, is equal to the original number.
+
+Eg: 153,here the number of digits is 3. So, 1^3+5^3+3^3=153.
+
+
+
+6.Reverse the given number
+
+
+7.check whether the given number is palindrome or not. If the original number and its reversed number is equal, it is said to be Palindrome.
+
+
+
+8.Check whether the number is a magic number. Magic number is a number where product of sum of digits and sum reverse is equal to the same number. For example, consider n=1729 sum of digits = (1 + 7 + 2 + 9 => 19) Reverse of 19 is 91 (19 X 91 = 1729)
+
+
+9.Find whether the given number is Adam or Not. The square of the given number is equal to the reverse of square of reverse of the given number.
+
+ For example, Consider the input 12. Square(12)=144 Reverse(Square(Reverse(12)))=144
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+1.
+#include<stdio.h>
+int main()//entry point
+{
+ long long int input;
+ scanf("%lld",&input);
+ int no_of_digits=0;
+ long long int power=1;
+ while(input/power)
+ {
+    no_of_digits+=1;
+    power*=10;
+ }
+ long long int left_power;
+ long long int right_power;
+ int ctr;
+ int left_digit;
+ int right_digit;
+ int sum=0;
+ int diff;
+ left_power=power/10;
+ right_power=1;
+ for(ctr=1;ctr<=no_of_digits/2;ctr+=1)
+ {
+     left_digit=(input/left_power)%10;
+     right_digit=(input/right_power)%10;
+     left_power/=10;
+     right_power*=10;
+     diff=abs(left_digit-right_digit);
+     sum+=diff;
+ }
+ if(no_of_digits%2==1)
+ {
+     sum=sum+(input/left_power)%10;
+ }
+ printf("%d",sum);
+  return 0;
+}
+
+
+
+
+
+
+2.
+#include<stdio.h>
+
+int main(){
+    
+    long long int num,counter[10]={0};
+    scanf("%lld",&num);
+    while(num!=0){
+        counter[num%10]++;
+        num/=10;
+    }
+    for(int digit=0;digit<10;digit++){
+        printf("%lld occurs %lld times\n",digit,counter[digit]);
+    }
+    return 0;
+}
+
+
+
+
+
+3.
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+long long int num1,num2,digit,sum1=0,sum2=0;
+ scanf("%lld%lld",&num1,&num2);
+ while(num1)
+ {
+ digit=num1%10;
+ sum1=sum1+pow(10,digit);
+ num1/=10;
+ }
+ while(num2)
+ {
+ digit=num2%10;
+ sum2=sum2+pow(10,digit);
+ num2/=10;
+ }
+ if(sum1==sum2)
+ printf("Anagram");
+ else
+ printf("Not");
+
+ return 0;
+}
+
+
+
+
+
+
+
+4.
+#include<stdio.h>
+int main(){
+    long long int num,fact=1,sum=0,temp;
+    scanf("%lld",&num);
+    temp=num;
+    while(num!=0){
+        for(int check_factor=1;check_factor<=num%10;check_factor++){
+            fact*=check_factor;
+        }
+        sum+=fact;
+        fact=1;
+        num/=10;
+    }
+    (temp==sum)?printf("Strong Number"):printf("Not a strong number");
+    return 0;
+}
+
+
+
+
+
+5.
+#include <stdio.h>
+int main() {
+    int num, originalNum, remainder, ans = 0,count=0,power=1,itr;
+    scanf("%d", &num);
+    originalNum = num;
+    while(num!=0)
+    {
+        num=num/10;
+        count++;
+    }
+    num=originalNum;
+    while (originalNum != 0) {
+  
+        remainder = originalNum % 10;
+        power=1;
+        for(itr=1;itr<=count;itr++)
+           power=power*remainder;
+        ans=ans+power;
+       originalNum /= 10;
+    }
+
+    if (ans == num)
+        printf("Armstrong number");
+    else
+        printf("Not an Armstrong number");
+
+    return 0;
+}
+
+
+
+
+
+6.
+#include <stdio.h>
+int main() {
+    long long int num,rev=0,temp;
+    scanf("%lld",&num);
+    temp=num;
+    while(temp!=0){
+        rev=rev*10+temp%10;
+        temp/=10;
+    }
+    
+    printf("%lld",rev);
+    return 0;
+}
+
+
+
+
+
+7.
+#include <stdio.h>
+int main() {
+    long long int num,rev=0,temp;
+    scanf("%lld",&num);
+    temp=num;
+    while(temp!=0){
+        rev=rev*10+temp%10;
+        temp/=10;
+    }
+    (num==rev)?printf("Palindrome"):printf("Not a Palindrome");
+   return 0;
+}
+
+
+
+
+8.
+#include<stdio.h>
+
+int main(){
+    int num,sum=0,rev=0;
+    scanf("%d",&num);
+    int temp=num;
+    while(temp!=0){
+        sum+=temp%10;
+        temp/=10;
+    }
+
+    temp = sum;
+    
+    while(temp!=0){
+        rev = rev*10+ temp%10;
+        temp/=10;
+    }
+    
+    if(sum*rev == num){
+        printf("YES");
+    }
+    else
+    {
+        printf("NO");
+    }
+    return 0;
+    
+}
+
+
+
+
+
+
+9.
+#include <stdio.h>
+int main() {
+    long long int num,temp,revnum=0,revsq=0,sq=0;
+    scanf("%lld",&num);
+    temp=num;
+    while(temp!=0){
+        revnum=revnum*10 + temp%10;
+        temp/=10;
+    }
+    sq=num*num;
+    revsq=revnum*revnum;
+    
+    temp=revsq;
+    revsq=0;
+    
+    while(temp!=0){
+        revsq = revsq*10 + temp%10;
+        temp/=10;
+    }
+    
+    (sq==revsq)?printf("Adam Number"):printf("Not a Adam Number");
+    return 0;
+}

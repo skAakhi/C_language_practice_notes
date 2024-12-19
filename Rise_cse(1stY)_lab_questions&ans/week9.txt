@@ -1,0 +1,495 @@
+
+1.Write a function to calculate NCR value
+
+
+2.wirte a c function to find length of a string
+
+
+3.write a c function to transpose of a matrix
+
+
+4.Write a recursive function to generate fibnocci sries
+
+
+5.Write a recursive function to find the LCM of two numbers
+
+
+6.Write a recursive function to find factorial of number
+
+
+7.Write a recursive function to find sum of series
+
+
+
+
+
+
+
+
+
+Answers:
+
+1.
+// Online C compiler to run C program online
+#include <stdio.h>
+int factorial(int num)
+{
+    int fact=1;
+    for(int i=1;i<=num;i++)
+    fact*=i;
+    
+    return fact;
+}
+void main()
+{
+    int n,r;
+    float ncr;
+    printf("Enter n  r values: ");
+    scanf("%d%d",&n,&r);
+    //ncr=n!/((n-r)! * (r!)) :formula
+    
+ncr=(float)factorial(n)/(factorial(r) * factorial(n-r));
+    printf("NCR=%f",ncr);
+}
+
+
+
+
+
+1.1[using recursions]
+// Online C compiler to run C program online
+#include <stdio.h>
+int factorial(int num)
+{ 
+    if(num==0)
+    {
+        return 1;
+    }
+   return num*factorial(num-1);
+    
+}
+void main()
+{
+    int n,r;
+    float ncr;
+    printf("Enter n  r values: ");
+    scanf("%d%d",&n,&r);
+    //ncr=n!/((n-r)! * (r!)) :formula
+    
+ncr=(float)factorial(n)/(factorial(r) * factorial(n-r));
+    printf("NCR=%f",ncr);
+}
+
+
+
+
+
+
+1.2[using conditional operator]
+// Online C compiler to run C program online
+#include <stdio.h>
+int factorial(int num)
+{ 
+  return ((num!=0)  ? num*factorial(num-1) : 1);  
+}
+void main()
+{
+    int n,r;
+    float ncr;
+    printf("Enter n  r values: ");
+    scanf("%d%d",&n,&r);
+    //ncr=n!/((n-r)! * (r!)) :formula
+    
+   ncr=factorial(n)/(factorial(r) * factorial(n-r));
+    printf("NCR=%f",ncr);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.
+#include <stdio.h>
+#include<stdlib.h>
+
+void transpose(int a[3][3])
+{
+    printf("Transpose matrix:\n");
+   for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<3;j++)
+        {
+            printf("%d",a[j][i]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int a[3][3];
+    printf("Enter matrix:\n");
+    for(int i=0;i<3;i++)
+    {
+        for(int j=0;j<3;j++)
+        {
+            scanf("%d",&a[i][j]);
+        }
+    }
+    transpose(a);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4.
+#include <stdio.h>
+
+// Function to calculate Fibonacci numbers recursively
+int fibonacci(int n) {
+    if (n == 0)
+        return 0;  // Base case: 0th Fibonacci number
+    else if (n == 1)
+        return 1;  // Base case: 1st Fibonacci number
+    else
+        return fibonacci(n - 1) + fibonacci(n - 2); // Recursive call
+}
+
+int main() {
+    int terms, i;
+
+    printf("Enter the number of terms in the Fibonacci series: ");
+    scanf("%d", &terms);
+
+    printf("Fibonacci Series: ");
+    for (i = 0; i < terms; i++) {
+        printf("%d ", fibonacci(i));
+    }
+    printf("\n");
+
+    return 0
+
+}
+
+
+
+
+
+
+4.1
+#include <stdio.h>
+
+// Function to print Fibonacci series using iteration
+void fibonacci(int n) {
+    int a = 0, b = 1;
+
+    printf("Fibonacci Series: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", a);
+        int temp = a;
+        a = b;
+        b = temp + b;
+    }
+    printf("\n");
+}
+
+int main() {
+    int terms;
+
+    printf("Enter the number of terms in the Fibonacci series: ");
+    scanf("%d", &terms);
+
+    // Call the function to print the Fibonacci series
+    fibonacci(terms);
+
+    return 0;
+}
+
+
+
+
+
+
+
+5.[Normal method to implement LCM of two numbers]
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    int a,b,lcm=0,flag=1;
+    printf("Enter two numbers: ");
+    scanf("%d%d",&a,&b);
+    lcm=(a>b) ? a : b;
+    
+    while(flag)
+    {
+        if(lcm%a==0 && lcm%b==0)
+        {
+            printf("LCM of %d and %d is %d",a,b,lcm);
+            //flag=0;
+            break;
+        }
+        lcm++;
+    }
+
+    return 0;
+}
+
+
+
+
+
+5.1[Finding out at a time GCD and LCM]
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    int a,b,lcm=0,gcd=0,min=0;
+    printf("Enter two numbers: ");
+    scanf("%d%d",&a,&b);
+    min=(a<b) ? a : b;
+    
+    for(int i=1;i<=min;i++)
+    {
+        if(a%i==0 && b%i==0)
+        {
+            gcd=i;
+        }
+    }
+   lcm=(a*b)/gcd;
+   
+   printf("GCD=%d LCM=%d",gcd,lcm);
+   
+    return 0;
+}
+
+
+5.2[Using functions implemented GCD or HCF and LCM]
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int GCD(int a,int b)
+{   
+    int gcd=0,min=0;
+    min=(a<b) ? a : b;
+    int i=1;
+    while(i<=min)
+    {
+        if(a%i==0 && b%i==0)
+        {
+            gcd=i;
+        }
+        i++;
+    }
+    return gcd;
+}
+
+int LCM(int a,int b)
+{
+    int lcm=0,flag=1;
+    lcm=(a>b) ? a : b;
+    while(flag)
+    {
+        if(lcm%a==0 && lcm%b==0)
+        {
+            return lcm;
+            //flag=0;
+            break;
+        }
+        lcm++;
+    }
+    return lcm;
+    
+}
+
+
+int main() {
+    int a,b;
+    printf("Enter two numbers: ");
+    scanf("%d%d",&a,&b);
+    
+   //lcm=(a*b)/gcd;
+   
+   printf("GCD=%d LCM=%d",GCD(a,b),LCM(a,b));
+   
+    return 0;
+}
+
+
+
+5.3[Using functions implemented GCD or HCF and LCM in precise way]
+// Online C compiler to run C program online
+#include <stdio.h>
+int GCD(int a,int b)
+{   
+    int min=0,gcd=0;
+    min=(a<b) ? a : b;
+    int i=1;
+    while(i<=min)
+    {
+        if(a%i==0 && b%i==0)
+        {
+            gcd=i;
+        }
+        i++;
+    }
+    return gcd;
+}
+
+int LCM(int a,int b)
+{
+    int lcm=0,gcd=0;
+   // gcd=GCD(a,b);
+    lcm=(a*b)/GCD(a,b);
+    
+    return lcm;
+    
+}
+
+
+int main() {
+    int a,b;
+    printf("Enter two numbers: ");
+    scanf("%d%d",&a,&b);
+    
+   //lcm=(a*b)/gcd;
+   
+   printf("GCD=%d LCM=%d",GCD(a,b),LCM(a,b));
+   
+    return 0;
+}
+
+
+
+
+
+
+5.4[Using recursive call] 
+#include <stdio.h>
+
+// Recursive function to calculate GCD using Euclidean algorithm
+int GCD(int a, int b) {
+    if (b == 0) {
+        return a; // Base case: GCD(a, 0) = a
+    }
+    return GCD(b, a % b); // Recursive case
+}
+
+// Function to calculate LCM
+int LCM(int a, int b) {
+    int gcd = GCD(a, b); // Calculate GCD
+    return (a * b) / gcd; // Use formula for LCM
+}
+
+int main() {
+    int a, b;
+
+    printf("Enter two numbers: ");
+    scanf("%d %d", &a, &b);
+
+    // Check for zero inputs
+    if (a == 0 || b == 0) {
+        printf("Error: LCM is not defined for zero inputs.\n");
+        return 1; // Exit the program
+    }
+
+    // Calculate GCD and LCM
+    int gcd = GCD(a, b);
+    int lcm = LCM(a, b);
+
+    printf("GCD = %d, LCM = %d\n", gcd, lcm);
+
+    return 0;
+}
+
+
+
+
+
+5.5
+// Online C compiler to run C program online
+#include <stdio.h>
+
+
+int LCM(int a,int b)
+{   
+    static int max=1;
+    if(max%a==0 && max%b==0)
+    {
+        return max;
+    }
+    max++;
+    LCM(a,b);
+    return max;
+}
+
+int main() {
+    int a, b;
+
+    printf("Enter two numbers: ");
+    scanf("%d%d", &a,&b);
+    
+    printf("LCM=%d",LCM(a,b));
+
+    return 0;
+}
+
+
+
+
+
+
+
+7.
+#include <stdio.h>
+#include<stdlib.h>
+int sum(int n)
+{
+    if(n<1)
+    {
+        return 0;
+    }
+    return n+sum(n-1);
+}
+int main() {
+    int n=3;
+    printf("%d",sum(n));
+    return 0;
+}
+
+
+
+
+

@@ -1,0 +1,50 @@
+UNIONS:
+
+Example:
+1.
+#include<stdio.h>
+#include<string.h>
+union student{
+    int id;
+    char name[30];
+    float marks;
+};
+int main()
+{
+  union student s;
+  s.id=101;
+  strcpy(s.name,"Aakhib");
+  s.marks=98.99;
+  
+  printf("%d\n%s\n%f",s.id,s.name,s.marks);
+}
+
+output:
+1120271073
+���Bib
+98.989998
+
+
+
+
+
+2.
+#include<stdio.h>
+#include<string.h>
+union student{
+    int x;
+    int y;
+}u;
+int main()
+{
+    u.x=10;
+    printf("%d %d\n",u.x,u.y);
+    u.y=20;
+    printf("%d %d\n",u.x,u.y);
+  
+}
+
+
+output:
+10 10
+20 20

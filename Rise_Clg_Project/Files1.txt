@@ -1,0 +1,331 @@
+
+FILES:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Write(w) and Read(r) mode:
+
+1.[To insert a single charachter]----------------fputc() inserting  single charachter   and  fgetc() fetching data from file
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+    FILE *p=NULL;
+    char ch='A';
+    p=fopen("abc.txt","w");
+    if(p==NULL)                     //------------>This will create a file if doesnt exisit , if there is a file will clear previous content and instert new content
+    {
+        printf("Error");
+        exit(0);
+    }
+    
+    fputc(ch,p);
+     fclose(p);
+     
+    //  p=fopen("abc.txt","r");
+    // if(p==NULL)
+    // {
+    //     printf("Error");//------------------->used to print it in output console
+    //     exit(0);
+    // }
+    // ch=fgetc(p);
+    // fclose(p);
+    // printf("%c",ch);
+    
+    return 0;
+}
+
+
+
+
+
+1.1[To insert a string in file and printing it also in output console]-------fputc() insering string  and  fgetc() fetching data from file
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+    FILE *p=NULL;
+    char str[50]="Aakhib is earning more than 80Lakhs";
+    p=fopen("abc.txt","w");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    for(int i=0;str[i]!='\0';i++)
+    fputc(str[i],p);
+    
+     fclose(p);
+     
+    // p=fopen("abc.txt","r");
+    // if(p==NULL)
+    // {
+    //     printf("Error");
+    //     exit(0);
+    // }
+    char ch;
+    while((ch=fgetc(p))!=EOF){
+    printf("%c",ch);
+    }
+
+    fclose(p);
+
+    // for(int i=0;str[i]!='\0';i++){
+    // char ch=fgetc(p);
+    // printf("%c",ch);
+    // }
+    // fclose(p);
+    
+    return 0;
+}
+
+
+
+2.1 [Using fputs() and fgets()  inserting and fetching data]
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+    FILE *p=NULL;
+    char str[50]="Aakhib is earning more than 90Lakhs";
+    char dup[50];
+    p=fopen("abc.txt","w");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    fputs(str,p);
+    fclose(p);
+     
+    p=fopen("abc.txt","r");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    fgets(dup,sizeof(dup),p);
+    puts(dup);
+    fclose(p);
+    
+    
+    return 0;
+}
+
+
+
+
+
+2.2[fprintf() functiom]
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+    FILE *p=NULL;
+    char str[50]="Aakhib is earning more than 90Lakhs";
+    char ch='A';
+    int id=101;
+    char dup[50];
+    p=fopen("abc.txt","w");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    fprintf(p,"ID:%d\nName:%s\nDEPT:%c",id,str,ch);
+    fclose(p);
+     
+    p=fopen("abc.txt","r");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    
+    while(fgets(dup,sizeof(dup),p)!=NULL)
+    {
+        printf("%s",dup);                   --------------------used fgets() to print in output console line by line
+    }    
+
+    fclose(p);
+
+     //while(!feof(p))
+     //{
+     //fgets(dup,sizeof(dup),p);
+     //printf("%s",dup);
+     //}
+    
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2.3 [Here cna use getc() or fgetc()]
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+    FILE *p=NULL;
+    char str[50]="Aakhib is earning more than 90Lakhs";
+    char ch='A';
+    int id=101;
+    char dup[50];
+    p=fopen("abc.txt","w");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    fprintf(p,"ID:%d\nName:%s\nDEPT:%c",id,str,ch);
+    fclose(p);
+     
+    p=fopen("abc.txt","r");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    
+    int chh;
+    while((chh=fgetc(p))!=EOF)
+    {                                                          //-----------------used fgetc() or getc() to print
+        printf("%c",chh);
+    }
+    
+    fclose(p);
+    
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+2.3
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+    FILE *p=NULL;
+    char str[50]="Aakhib is earning more than 90Lakhs";
+    char ch='A';
+    int id=101;
+    char dup[50];
+    p=fopen("abc.txt","w");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    fprintf(p,"ID:%d\nName:%s\nDEPT:%c",id,str,ch);
+    fclose(p);
+     
+    p=fopen("abc.txt","r");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    
+    int tid;
+    char line[50];
+    char chh;
+    fscanf(p,"ID:%d\nName:%s\nDEPT:%c",&tid,line,&chh);    // As it is same comments should provide like ID ,Name .......case sensitive other wont read from file
+    printf("Id:%d\nName:%s\nDEPT:%c",tid,line,chh);
+    
+    fclose(p);
+    
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+APPEND:
+
+
+
+1.[It is appending from current content]
+#include <stdio.h>
+#include<stdlib.h>
+
+int main() {
+    FILE *p=NULL;
+    char str[50];
+    p=fopen("abc.txt","a");
+    if(p==NULL)
+    {
+        printf("Error");
+        exit(0);
+    }
+    printf("Enter content: ");
+    scanf("%[^\n]s",str);
+    fputs(str,p);
+    printf("Sucessfully appended");
+    fclose(p);
+    
+    return 0;
+}
+
+
+

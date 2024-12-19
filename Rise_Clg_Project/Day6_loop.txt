@@ -1,0 +1,279 @@
+
+1.A person walks in a rectangular path starting from the origin.
+For the first step he walks 10 feet on the right. For the next
+step he walks 20 feet by turning in clockwise direction from
+the current position. For the third step he walks 30 feet by
+turning in clockwise direction from the current position and
+it goes on. Given the number of steps calculate the final
+co-ordinate of the person starting from the origin.
+
+
+
+
+
+2.Display the numbers of days completed in that year
+
+
+3.Given a date ,write a program to calculate the number of days remaining in that year.
+
+
+
+4.Given two dates, write a program to calculate the difference between two dates
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+1.
+"#include<stdio.h>
+int main() {
+ int steps,x=0,y=0;
+ int count,multiply=1;
+ scanf(""%d"",&steps);
+ while(1)
+ {
+ if(steps>0)//moving right
+ {
+ x=x+multiply*10;
+ multiply++;
+ steps--;
+ }
+ if(steps>0)//moving down
+ {
+ y=y-multiply*10;
+ multiply++;
+ steps--;
+ }
+ if(steps>0)//moving left
+ {
+ x=x-multiply*10;
+ multiply++;
+ steps--;
+ }
+ if(steps>0)//moving up
+ {
+ y=y+multiply*10;
+ multiply++;
+ steps--;
+ }
+ if(steps==0)
+ break;
+ }
+ printf(""(%d , %d)"",x,y);
+ return 0; 
+}
+
+
+
+
+
+
+
+2.
+#include <stdio.h>
+
+// Function to check if a year is a leap year
+int isLeapYear(int year) {
+    if (year % 400 == 0) {
+        return 1;
+    }
+    if (year % 100 == 0) {
+        return 0;
+    }
+    if (year % 4 == 0) {
+        return 1;
+    }
+    return 0;
+}
+
+// Function to calculate the number of days completed in the year
+int daysCompleted(int day, int month, int year) {
+    // Array with the number of days in each month
+    int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    // If the year is a leap year, February has 29 days
+    if (isLeapYear(year)) {
+        daysInMonth[1] = 29;
+    }
+
+    int daysCompleted = 0;
+
+    // Sum the days in the months before the given month
+    for (int i = 0; i < month - 1; i++) {
+        daysCompleted += daysInMonth[i];
+    }
+
+    // Add the days in the current month
+    daysCompleted += day;
+
+    return daysCompleted;
+}
+
+int main() {
+    int day, month, year;
+
+    printf("Enter day: ");
+    scanf("%d", &day);
+    printf("Enter month: ");
+    scanf("%d", &month);
+    printf("Enter year: ");
+    scanf("%d", &year);
+
+    int result = daysCompleted(day, month, year);
+
+    printf("Number of days completed in the year: %d\n", result);
+
+    return 0;
+}
+
+
+
+
+
+
+
+3.
+#include <stdio.h>
+
+// Function to check if a year is a leap year
+int isLeapYear(int year) {
+    if (year % 400 == 0) {
+        return 1;
+    }
+    if (year % 100 == 0) {
+        return 0;
+    }
+    if (year % 4 == 0) {
+        return 1;
+    }
+    return 0;
+}
+
+// Function to calculate the number of days remaining in the year
+int daysRemaining(int day, int month, int year) {
+    // Array with the number of days in each month
+    int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    // If the year is a leap year, February has 29 days
+    if (isLeapYear(year)) {
+        daysInMonth[1] = 29;
+    }
+
+    int totalDaysInYear = isLeapYear(year) ? 366 : 365;
+    int daysPassed = 0;
+
+    // Sum the days in the months before the given month
+    for (int i = 0; i < month - 1; i++) {
+        daysPassed += daysInMonth[i];
+    }
+
+    // Add the days in the current month
+    daysPassed += day;
+
+    int daysRemaining = totalDaysInYear - daysPassed;
+
+    return daysRemaining;
+}
+
+int main() {
+    int day, month, year;
+
+    printf("Enter date (dd/mm/yyyy): ");
+    scanf("%d%d%d", &day, &month, &year);
+
+    int result = daysRemaining(day, month, year);
+
+    printf("Number of days remaining in the year: %d\n", result);
+
+    return 0;
+}
+
+
+
+4.
+#include <stdio.h>
+
+// Function to check if a year is a leap year
+int isLeapYear(int year) {
+    if (year % 400 == 0) {
+        return 1;
+    }
+    if (year % 100 == 0) {
+        return 0;
+    }
+    if (year % 4 == 0) {
+        return 1;
+    }
+    return 0;
+}
+
+// Function to calculate the number of days in a given year
+int daysInYear(int year) {
+    return isLeapYear(year) ? 366 : 365;
+}
+
+// Function to calculate the number of days from the start of the year to the given date
+int daysFromStartOfYear(int day, int month, int year) {
+    int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    // If the year is a leap year, February has 29 days
+    if (isLeapYear(year)) {
+        daysInMonth[1] = 29;
+    }
+
+    int days = 0;
+
+    // Sum the days in the months before the given month
+    for (int i = 0; i < month - 1; i++) {
+        days += daysInMonth[i];
+    }
+
+    // Add the days in the current month
+    days += day;
+
+    return days;
+}
+
+// Function to calculate the difference in days between two dates
+int dateDifference(int day1, int month1, int year1, int day2, int month2, int year2) {
+    int totalDays1 = 0;
+    int totalDays2 = 0;
+
+    // Calculate the total number of days from year 0 to the first date
+    for (int i = 0; i < year1; i++) {
+        totalDays1 += daysInYear(i);
+    }
+    totalDays1 += daysFromStartOfYear(day1, month1, year1);
+
+    // Calculate the total number of days from year 0 to the second date
+    for (int i = 0; i < year2; i++) {
+        totalDays2 += daysInYear(i);
+    }
+    totalDays2 += daysFromStartOfYear(day2, month2, year2);
+
+    // Return the absolute difference between the two totals
+    return totalDays2 - totalDays1;
+}
+
+int main() {
+    int day1, month1, year1;
+    int day2, month2, year2;
+
+    printf("Enter the first date (dd/mm/yyyy): ");
+    scanf("%d%d%d", &day1, &month1, &year1);
+
+    printf("Enter the second date (dd/mm/yyyy): ");
+    scanf("%d%d%d", &day2, &month2, &year2);
+
+    int result = dateDifference(day1, month1, year1, day2, month2, year2);
+
+    printf("Difference between the two dates is: %d days\n", result);
+
+    return 0;
+}
+
+
